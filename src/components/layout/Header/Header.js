@@ -47,7 +47,7 @@ export default function Component(className, props) {
       <HideOnScroll {...props}>
         <AppBar className={styles.app_bar}>
           <Toolbar>
-            <Typography variant="h6" component="div" >
+            <Typography variant="h6" component="div" className={styles.typography} >
               <img src={chain} width='100' height='100' alt='chain_icon' />
               <h1 className={styles.font_style}>Bicycles shop</h1>
             </Typography>

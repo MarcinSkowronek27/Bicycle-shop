@@ -9,14 +9,13 @@
     margin: auto;
     padding: auto;
     height: 120px;
-    div {
+    .typography {
       display: flex;
       flex-direction: row;
-      border: solid red;
-      margin: 0;
-      padding: 0;
       justify-content: center;
       align-items: center;
+      height: 100%;
+      // border: solid red;
       .font_style{
         font-family: 'Meow Script', cursive;
         font-size: 60px;
