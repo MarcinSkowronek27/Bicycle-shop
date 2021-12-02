@@ -1,0 +1,32 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  .app_bar {
+    display: flex;
+    flex-direction: row;
+    background-color: sandybrown;
+    justify-content: center;
+    margin: auto;
+    padding: auto;
+    height: 120px;
+    div {
+      display: flex;
+      flex-direction: row;
+      border: solid red;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      .font_style{
+        font-family: 'Meow Script', cursive;
+        font-size: 60px;
+        color: saddlebrown;
+        // border: solid red;
+      }
+    }
+  }
+  .link {
+    color: inherit;
+    font-weight: 400;
+  }
+}
