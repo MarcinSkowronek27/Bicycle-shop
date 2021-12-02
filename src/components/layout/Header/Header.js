@@ -14,12 +14,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMobileAlt } from '@fortawesome/free-solid-svg-icons';
 
 function HideOnScroll(props) {
   const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
   });
@@ -33,10 +32,6 @@ function HideOnScroll(props) {
 
 HideOnScroll.propTypes = {
   children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 
@@ -48,6 +43,12 @@ export default function Component(className, props) {
         <AppBar className={styles.app_bar}>
           <Toolbar>
             <Typography variant="h6" component="div" className={styles.typography} >
+              <div className={`col text-left ${styles.phoneNumber}`}>
+                <p>
+                  <FontAwesomeIcon className={styles.icon} icon={faMobileAlt} /> 750 - 360 -
+                  222
+                </p>
+              </div>
               <img src={chain} width='100' height='100' alt='chain_icon' />
               <h1 className={styles.font_style}>Bicycles shop</h1>
             </Typography>
