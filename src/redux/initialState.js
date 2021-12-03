@@ -8,6 +8,7 @@ export const initialState = {
         image: 'https://images.pexels.com/photos/1149601/pexels-photo-1149601.jpeg?cs=srgb&dl=pexels-leandro-boogalu-1149601.jpg&fm=jpg',
         promo: 'sale',
         price: 2300,
+        oldPrice: 1800,
       },
       {
         id: 2,
@@ -16,6 +17,7 @@ export const initialState = {
         image: 'https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?cs=srgb&dl=pexels-philipp-m-100582.jpg&fm=jpg',
         promo: 'sale',
         price: 4800,
+        oldPrice: 3800,
       },
       {
         id: 3,

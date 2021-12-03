@@ -19,7 +19,6 @@ import { Typography } from '@material-ui/core';
 
 const Component = ({ className, allBicycles, children }) => {
 
-
   return (
     <div className={clsx(className, styles.root)}>
       <div className={clsx(className, styles.bicyclesContainer)}>
@@ -47,6 +46,7 @@ const Component = ({ className, allBicycles, children }) => {
               <Divider />
               <div className={clsx(className, styles.details)}>
                 <Typography className={styles.price}>
+                  <div className={styles.oldPrice}>{bicycle.oldPrice ?  bicycle.oldPrice + 'PLN' : ''}</div>
                   {bicycle.price && `Price: ${bicycle.price}PLN`}
                 </Typography>
                 <Typography className={styles.description}>
