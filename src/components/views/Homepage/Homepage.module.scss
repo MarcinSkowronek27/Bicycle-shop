@@ -1,5 +1,58 @@
 @import '../../../styles/settings.scss';
 
 .root {
-  height: 1400px;
+  padding: ($base-size * 2) 0;
+
+  .bicyclesContainer {
+    display: flex;
+    // align-content: space-between;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 600px;
+    display: inline-block;
+    margin: 24px 12px;
+
+    .photo {
+      position: relative;
+      padding: 0;
+      // background: {
+      //   color: red;
+      //   size: contain;
+      //   position: center;
+      //   repeat: no-repeat;
+      // }
+      // overflow: hidden;
+      // align-items: flex-end;
+
+      .sale {
+        position: absolute;
+        border: solid $color-primary;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        border-radius: 60%;
+        font-size: 20px;
+        color: $color-primary;
+        padding: 35px 15px 5px 15px;
+      }
+    }
+
+    .details {
+      margin: 12px 0;
+      > * {
+        font-size: 0.8rem;
+      }
+      .price {
+        font-size: 20px;
+      }
+    }
+
+    .description {
+      margin: 12px 0;
+    }
+  }
 }
