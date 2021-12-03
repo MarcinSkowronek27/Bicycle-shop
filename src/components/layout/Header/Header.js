@@ -16,6 +16,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -43,13 +44,19 @@ export default function Component(className, props) {
         <AppBar className={styles.app_bar}>
           <Toolbar>
             <Typography variant="h6" component="div" className={styles.typography} >
-              <div className={`col text-left ${styles.phoneNumber}`}>
-                <p>
-                  <FontAwesomeIcon className={styles.icon} icon={faMobileAlt} /> 750 - 360 -
-                  222
-                </p>
+              <div className='container'>
+                <div className='row align-items-center'>
+                  <div className={`col text-left ${styles.phoneNumber}`}>
+                    <p>
+                      <FontAwesomeIcon className={styles.icon} icon={faMobileAlt} /> 780 - 350 -
+                      222
+                    </p>
+                  </div>
+                </div>
               </div>
-              <img src={chain} width='100' height='100' alt='chain_icon' />
+              <NavLink exact to={'/'} activeClassName='active'>
+                <img src={chain} width='100' height='100' alt='chain_icon' />
+              </NavLink>
               <h1 className={styles.font_style}>Bicycles shop</h1>
             </Typography>
           </Toolbar>

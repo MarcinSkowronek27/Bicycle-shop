@@ -17,7 +17,6 @@
       align-items: center;
       height: 100%;
       width: 800px;
-      border: solid red;
       .font_style{
         font-family: 'Meow Script', cursive;
         font-size: 60px;
@@ -37,9 +36,9 @@
         &::after {
           content: "";
           position: absolute;
-          left: 25%;
+          left: 60%;
           top: 100%;
-          transform: translateX(-25%);
+          transform: translateX(-50%);
           width: 0;
           height: 2px;
           background-color: white;
