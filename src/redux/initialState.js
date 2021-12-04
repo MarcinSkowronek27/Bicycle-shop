@@ -9,6 +9,8 @@ export const initialState = {
         promo: 'sale',
         price: 2300,
         oldPrice: 1800,
+        category: 'road bike',
+        quantity: 1,
       },
       {
         id: 2,
@@ -18,6 +20,9 @@ export const initialState = {
         promo: 'sale',
         price: 4800,
         oldPrice: 3800,
+        category: 'mountain bike',
+        quantity: 1,
+
       },
       {
         id: 3,
@@ -26,6 +31,8 @@ export const initialState = {
         image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?cs=srgb&dl=pexels-pixabay-276517.jpg&fm=jpg',
         promo: null,
         price: 1700,
+        category: 'road bike',
+        quantity: 1,
       },
     ],
     loading: {

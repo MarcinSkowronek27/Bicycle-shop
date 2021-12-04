@@ -1,4 +1,57 @@
-@import '../../../styles/settings.scss';
+@import "../../../styles/settings.scss";
 
-// .root {
-// }
+.root {
+  padding: 24px 0;
+  margin: 20px;
+
+  .container {
+    margin: 0 auto;
+    width: 100%;
+
+    .break {
+      border-bottom: 1px solid black;
+    }
+
+    .cart {
+      background-color: $color-primary;
+      border: 1px solid red;
+      margin-right: 3px;
+      &:hover {
+        background-color: yellow;
+      }
+    }
+
+    .quantityInput {
+      width: 50px;
+      text-align: center;
+      padding: 0 10px;
+      height: 34px;
+    }
+
+    .quantityText {
+      margin: auto 0;
+    }
+
+    .oldPrice {
+      text-decoration: line-through grey;
+      color: pink;
+      margin-right: 10px;
+    }
+
+    .price,
+    .oldPrice {
+      font-size: larger;
+    }
+
+    .icon {
+      background-color: yellowgreen;
+      border: 1px solid brown;
+      color: plum;
+      margin-right: 3px;
+      &:hover {
+        background-color: black;
+        color: red;
+      }
+    }
+  }
+}
