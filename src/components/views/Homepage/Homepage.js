@@ -16,6 +16,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import { Typography } from '@material-ui/core';
+import { Link } from '@material-ui/core';
 
 const Component = ({ className, allBicycles, children }) => {
 
@@ -23,7 +24,7 @@ const Component = ({ className, allBicycles, children }) => {
     <div className={clsx(className, styles.root)}>
       <div className={clsx(className, styles.bicyclesContainer)}>
         {allBicycles.map((bicycle, index) => (
-          <Card key={bicycle.id} className={clsx(className, styles.card)}>
+          <Card key={bicycle.id} className={clsx(className, styles.card)} component={Link} href={`bicycle/${bicycle.id}`}>
             <div className={styles.photo}>
               {bicycle.image &&
                 <CardMedia
