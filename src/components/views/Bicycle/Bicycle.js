@@ -44,7 +44,7 @@ class BicyclePage extends React.Component {
           {bicycle.map(item => (
             <div key={item.id}>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6} lg={12}>
+                <Grid item xs={12} sm={6} lg={12} className={styles.image}>
                   <img src={item.image} alt={item.name} />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -59,7 +59,7 @@ class BicyclePage extends React.Component {
                         gap: 3,
                       }}
                     >
-                      <h2>{item.title}</h2>
+                      <h1>{item.title}</h1>
                     </Box>
                   </Grid>
                   <Grid item xs={12} className={styles.break}>
@@ -76,9 +76,9 @@ class BicyclePage extends React.Component {
                       <div className={styles.oldPrice}>
                         {item.oldPrice ? item.oldPrice + ' PLN' : ''}
                       </div>
-                      <Button className={styles.price}>
+                      <div className={styles.price}>
                         {item.price} PLN
-                      </Button>
+                      </div>
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
@@ -93,7 +93,7 @@ class BicyclePage extends React.Component {
                       }}
                     >
                       <Button className={styles.cart}>
-                        <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD
+                        <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon>ADD
                         TO CART
                       </Button>
                     </Box>
@@ -129,16 +129,16 @@ class BicyclePage extends React.Component {
                   </Grid>
                   <Grid item xs={12} className={styles.break}>
                     <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        flexWrap: 'wrap',
-                        alignItems: 'flex-start',
-                        my: 1,
-                        gap: 3,
-                      }}
+                      // sx={{
+                      //   display: 'flex',
+                      //   justifyContent: 'flex-start',
+                      //   flexWrap: 'wrap',
+                      //   alignItems: 'flex-start',
+                      //   my: 1,
+                      //   gap: 3,
+                      // }}
                     >
-                      <h4>Quick overview</h4>
+                      <h4>Quick overview:</h4>
                       <p>{item.description}</p>
                     </Box>
                   </Grid>
