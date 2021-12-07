@@ -7,8 +7,6 @@ import Box from '@material-ui/core/Box';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faShoppingBasket,
-  faMinus,
-  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 
@@ -103,35 +101,6 @@ class BicyclePage extends React.Component {
               </Grid>
               <Grid item xs={12} className={styles.break}>
                 <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'flex-start',
-                    flexWrap: 'wrap',
-                    alignItems: 'flex-start',
-                    my: 1,
-                    gap: 5,
-                  }}
-                >
-                  <p className={styles.quantityText}>
-                    <b>Quantity: </b>
-                  </p>
-                  <input
-                    type='text'
-                    id='quantity'
-                    name='quantity'
-                    defaultValue={item.quantity}
-                    className={styles.quantityInput}
-                  />
-                  <Button className={styles.icon}>
-                    <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
-                  </Button>
-                  <Button className={styles.icon}>
-                    <FontAwesomeIcon icon={faPlus}>-</FontAwesomeIcon>
-                  </Button>
-                </Box>
-              </Grid>
-              <Grid item xs={12} className={styles.break}>
-                <Box
                 // sx={{
                 //   display: 'flex',
                 //   justifyContent: 'flex-start',
@@ -141,8 +110,10 @@ class BicyclePage extends React.Component {
                 //   gap: 3,
                 // }}
                 >
+
                   <h4>Quick overview:</h4>
                   <p>{item.description}</p>
+
                 </Box>
               </Grid>
               <Grid item xs={12} className={styles.break}>

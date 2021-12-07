@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { BicycleEditComponent } from './BicycleEdit';
+import { CartComponent } from './Cart';
 
-describe('Component BicycleEdit', () => {
+describe('Component Cart', () => {
   it('should render without crashing', () => {
-    const component = shallow(<BicycleEditComponent />);
+    const component = shallow(<CartComponent />);
     expect(component).toBeTruthy();
   });
 });

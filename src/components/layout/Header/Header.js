@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMobileAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMobileAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 
 function HideOnScroll(props) {
@@ -58,6 +58,16 @@ export default function Component(className, props) {
                 <img src={chain} width='100' height='100' alt='chain_icon' />
               </NavLink>
               <h1 className={styles.font_style}>Bicycles shop</h1>
+              {/* <div className={`col text-right ${styles.cart}`}> */}
+              <NavLink exact to={'/bicycle/add'} activeClassName='active' className={styles.cart}>
+                <button className={styles.cartBox}>
+                  <div className={styles.cartIcon}>
+                    <FontAwesomeIcon className={styles.icon} icon={faShoppingBasket} />
+                  </div>
+                  {/* <div className={styles.cartCounter}>{cartCount}</div> */}
+                </button>
+              </NavLink>
+              {/* </div> */}
             </Typography>
           </Toolbar>
         </AppBar>

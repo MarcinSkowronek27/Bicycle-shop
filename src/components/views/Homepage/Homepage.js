@@ -46,11 +46,11 @@ const Component = ({ className, allBicycles, children }) => {
               </List>
               <Divider />
               <div className={clsx(className, styles.details)}>
-                <Typography className={styles.price}>
+                <Typography className={styles.price} component={'span'}>
                   <div className={styles.oldPrice}>{bicycle.oldPrice ?  bicycle.oldPrice + 'PLN' : ''}</div>
                   {bicycle.price && `Price: ${bicycle.price}PLN`}
                 </Typography>
-                <Typography className={styles.description}>
+                <Typography className={styles.description} component={'span'}>
                   {bicycle.description &&
                     <div>
                       <h4>Description:</h4> {bicycle.description}
@@ -69,7 +69,7 @@ const Component = ({ className, allBicycles, children }) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  allBicycles: PropTypes.object,
+  allBicycles: PropTypes.array,
 };
 
 const mapStateToProps = state => ({

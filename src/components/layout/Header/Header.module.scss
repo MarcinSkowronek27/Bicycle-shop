@@ -1,4 +1,4 @@
-@import '../../../styles/settings.scss';
+@import "../../../styles/settings.scss";
 
 .root {
   .app_bar {
@@ -17,8 +17,8 @@
       align-items: center;
       height: 100%;
       width: 800px;
-      .font_style{
-        font-family: 'Meow Script', cursive;
+      .font_style {
+        font-family: "Meow Script", cursive;
         font-size: 60px;
         color: saddlebrown;
         // border: solid red;
@@ -62,6 +62,50 @@
           &:hover {
             animation: shake 250ms;
           }
+        }
+      }
+    }
+
+    .cart {
+      .phoneNumber {
+        display: none;
+      }
+      .cartBox {
+        display: inline-block;
+        position: relative;
+        color: saddlebrown;
+        border: none;
+        background-color: transparent;
+        &:hover {
+          cursor: pointer;
+        }
+
+        .cartIcon {
+          background-color: $color-main_background;
+          width: 34px;
+          height: 33px;
+          border-radius: 3px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px;
+        }
+
+        .cartCounter {
+          width: 100%;
+          padding-left: 10px;
+          height: 27px;
+          border-radius: 14px;
+          background-color: $color-main_background;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          font-size: 14px;
+          color: yellowgreen;
+          position: absolute;
+          top: 50%;
+          right: 0;
+          transform: translate(75%, -50%);
         }
       }
     }

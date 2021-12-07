@@ -10,7 +10,7 @@ import { store } from './redux/store';
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { Homepage } from './components/views/Homepage/Homepage';
 import { Bicycle} from './components/views/Bicycle/Bicycle';
-import { BicycleEdit } from './components/views/BicycleEdit/BicycleEdit';
+import { Cart} from './components/views/Cart/Cart';
 import { BicycleAdd } from './components/views/BicycleAdd/BicycleAdd';
 import { NotFound } from './components/views/NotFound/NotFound';
 
@@ -29,9 +29,9 @@ const App = () => (
           <MainLayout>
             <Switch>
               <Route exact path='/' component={Homepage} />
+              <Route exact path='/bicycle/cart' component={Cart} />
               <Route exact path='/bicycle/add' component={BicycleAdd} />
               <Route exact path='/bicycle/:id' component={Bicycle} />
-              <Route exact path='/bicycle/:id/edit' component={BicycleEdit} />
               <Route path='*' component={NotFound} />
             </Switch>
           </MainLayout>

@@ -6,14 +6,18 @@ import clsx from 'clsx';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import styles from './BicycleEdit.module.scss';
+import styles from './Cart.module.scss';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>BicycleEdit</h2>
-    {children}
-  </div>
-);
+const Component = ({ className, children }) => {
+
+  console.log('dupa');
+  return (
+    <div className={clsx(className, styles.root)}>
+      <h2>Cart</h2>
+      {children}
+    </div>
+  );
+};
 
 Component.propTypes = {
   children: PropTypes.node,
@@ -31,7 +35,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as BicycleEdit,
-  // Container as BicycleEdit,
-  Component as BicycleEditComponent,
+  Component as Cart,
+  // Container as Cart,
+  Component as CartComponent,
 };
