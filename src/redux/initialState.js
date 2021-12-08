@@ -22,8 +22,53 @@ export const initialState = {
         oldPrice: 3800,
         category: 'mountain bike',
         quantity: 1,
-
+        moreImage: [
+          {
+            id: 1,
+            image: '',
+          },
+          {
+            id: 2,
+            image: '',
+          },
+          {
+            id: 3,
+            image: '',
+          },
+        ],
       },
+      {
+        id: 3,
+        title: 'Axel 34',
+        description: 'Como esta noche bravo',
+        image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?cs=srgb&dl=pexels-pixabay-276517.jpg&fm=jpg',
+        promo: null,
+        price: 1700,
+        category: 'road bike',
+        quantity: 1,
+        moreImage: [
+          {
+            id: 1,
+            image: 'https://images.pexels.com/photos/5911709/pexels-photo-5911709.jpeg?cs=srgb&dl=pexels-cottonbro-5911709.jpg&fm=jpg',
+          },
+          {
+            id: 2,
+            image: 'https://images.pexels.com/photos/5911702/pexels-photo-5911702.jpeg?cs=srgb&dl=pexels-cottonbro-5911702.jpg&fm=jpg',
+          },
+          {
+            id: 3,
+            image: 'https://images.pexels.com/photos/5914907/pexels-photo-5914907.jpeg?cs=srgb&dl=pexels-cottonbro-5914907.jpg&fm=jpg',
+          },
+        ],
+      },
+    ],
+    loading: {
+      active: false,
+      error: false,
+    },
+  },
+  cart: {
+    products: [
       {
         id: 3,
         title: 'Axel 34',
@@ -35,9 +80,5 @@ export const initialState = {
         quantity: 1,
       },
     ],
-    loading: {
-      active: false,
-      error: false,
-    },
   },
 };

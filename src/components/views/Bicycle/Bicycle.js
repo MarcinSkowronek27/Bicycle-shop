@@ -7,6 +7,8 @@ import Box from '@material-ui/core/Box';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faShoppingBasket,
+  faMinus,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 
@@ -21,6 +23,10 @@ class BicyclePage extends React.Component {
     id: null,
   };
 
+  handleClick = (test) => {
+    console.log(test + ' habababa');
+  }
+
   componentDidMount() {
     let id = this.props.match.params.id;
     this.setState({
@@ -28,24 +34,39 @@ class BicyclePage extends React.Component {
     });
   }
 
+  srcset(image, size, rows = 1, cols = 1) {
+    return {
+      src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+      srcSet: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format&dpr=2 2x`,
+    };
+  }
+
   render() {
     // const id = this.state.id;
     const allBicycles = this.props.bicycles;
     // console.log('id', id);
     console.log('allBicycles', allBicycles);
-
+    console.log('oneBicycle', allBicycles[2].moreImage[0].image1);
     const bicycle = allBicycles.filter(bicycle => bicycle.id == this.state.id);  // eslint-disable-line
-    console.log(bicycle);
     return (
       <div className={styles.root}>
         {bicycle.map(item => (
           <Grid container key={item.id} spacing={2} className={styles.container}>
             <Grid item xs={12} sm={6} lg={12} className={styles.containerImage}>
-              <img src={item.image} alt={item.name} className={styles.image} />
-              {item.promo &&
-                <div className={styles.overlay}>
-                  <div className={styles.text}>Sale</div>
-                </div>}
+              <Grid key={item.id} container className={styles.gallery}>
+                <Grid item xs={12} md={6} lg={6} className={styles.wrapperLeft}>
+                  <img src={item.moreImage[0].image} className={styles.imgLarge} alt='imgFirst' />
+                </Grid>
+
+                <Grid item xs={12} md={6} lg={6} className={styles.wrapperRight}>
+                  <div className={`row pb-4 ${styles.wrapperSmall}`}>
+                    <img src={item.moreImage[1].image} alt='imgSecond' />
+                  </div>
+                  <div className={`row ${styles.wrapperSmall}`}>
+                    <img src={item.moreImage[2].image} alt='imgThird' />
+                  </div>
+                </Grid>
+              </Grid>
 
             </Grid>
             <Grid item xs={12} sm={6} className={styles.description}>
@@ -93,9 +114,39 @@ class BicyclePage extends React.Component {
                     gap: 3,
                   }}
                 >
-                  <Button className={styles.cart}>
+                  <Button className={styles.cart}
+                    onClick={() => this.handleClick('rower')}>
                     <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon>ADD
                     TO CART
+                  </Button>
+                </Box>
+              </Grid>
+              <Grid item xs={12} className={styles.break}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'flex-start',
+                    flexWrap: 'wrap',
+                    alignItems: 'flex-start',
+                    my: 1,
+                    gap: 5,
+                  }}
+                >
+                  <p className={styles.quantityText}>
+                    <b>Quantity: </b>
+                  </p>
+                  <input
+                    type='text'
+                    id='quantity'
+                    name='quantity'
+                    defaultValue={item.quantity}
+                    className={styles.quantityInput}
+                  />
+                  <Button className={styles.icon}>
+                    <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
+                  </Button>
+                  <Button className={styles.icon}>
+                    <FontAwesomeIcon icon={faPlus}>-</FontAwesomeIcon>
                   </Button>
                 </Box>
               </Grid>
@@ -110,10 +161,8 @@ class BicyclePage extends React.Component {
                 //   gap: 3,
                 // }}
                 >
-
                   <h4>Quick overview:</h4>
                   <p>{item.description}</p>
-
                 </Box>
               </Grid>
               <Grid item xs={12} className={styles.break}>
