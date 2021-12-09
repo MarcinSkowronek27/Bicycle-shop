@@ -16,9 +16,9 @@ const UPDATE_QUANTITY = createActionName('UPDATE_QUANTITY');
 export const addProduct = payload => ({ payload, type: ADD_PRODUCT });
 export const removeProduct = name => ({ name, type: REMOVE_PRODUCT });
 export const removeProducts = () => ({ type: REMOVE_PRODUCTS });
-export const updateQuantity = (quantity, productId) => ({
+export const updateQuantity = (quantity, id) => ({
   quantity,
-  productId,
+  id,
   type: UPDATE_QUANTITY,
 });
 
@@ -26,14 +26,14 @@ export const updateQuantity = (quantity, productId) => ({
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
     case ADD_PRODUCT: {
-      const id = action.payload.productId;
+      const id = action.payload.id;
       console.log(id);
-      let findId = statePart.products.find(product => product.productId === id);
+      let findId = statePart.products.find(product => product.id === id);
       if (typeof findId !== 'undefined') {
         return {
           ...statePart,
           products: statePart.products.map(product =>
-            product.productId === id
+            product.id === id
               ? { ...product, quantity: product.quantity + 1 }
               : { ...product }
           ),
@@ -61,7 +61,7 @@ export default function reducer(statePart = [], action = {}) {
       return {
         ...statePart,
         products: statePart.products.map(product => {
-          if (product.productId === action.productId) {
+          if (product.id === action.id) {
             if (
               product.quantity >= 1 ||
               (product.quantity < 1 && action.quantity > 0)

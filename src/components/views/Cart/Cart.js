@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 // import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getAll } from '../../../redux/cartRedux';
+import {
+  getAll,
+  addProduct,
+  removeProduct,
+  updateQuantity,
+} from '../../../redux/cartRedux';
 
 import styles from './Cart.module.scss';
 
@@ -15,7 +20,7 @@ import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
 
-const Component = ({ products, className, children }) => {
+const Component = ({ products, removeProduct, updateQuantity }) => {
 
   const delivery = 20;
   let subtotal = 0;
@@ -40,7 +45,7 @@ const Component = ({ products, className, children }) => {
               subtotal += product.price * product.quantity;
 
               return (
-                <tr key={product.productId}>
+                <tr key={product.id}>
                   <td>
                     <div>{product.name}</div>
                     <div className={styles.photo}>
@@ -55,17 +60,16 @@ const Component = ({ products, className, children }) => {
                       multiline
                       rows={6}
                       variant="outlined"
-                      // helperText="Min. 20 characters"
-                      // onChange={updateTextField}
+                    // helperText="Min. 20 characters"
+                    // onChange={updateTextField}
                     />
                   </td>
                   <td>
                     <Button
-                      variant='quantity'
-                    // onClick={event => {
-                    //   event.preventDefault();
-                    //   updateQuantity(-1, product.productId);
-                    // }}
+                      onClick={event => {
+                        event.preventDefault();
+                        updateQuantity(-1, product.id);
+                      }}
                     >
                       <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
                     </Button>
@@ -73,14 +77,14 @@ const Component = ({ products, className, children }) => {
                       type='text'
                       id='quantity'
                       name='quantity'
+                      // defaultValue='1'
                       value={product.quantity}
                     />
                     <Button
-                      variant='quantity'
-                    // onClick={event => {
-                    //   event.preventDefault();
-                    //   updateQuantity(1, product.productId);
-                    // }}
+                      onClick={event => {
+                        event.preventDefault();
+                        updateQuantity(1, product.id);
+                      }}
                     >
                       <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
                     </Button>
@@ -89,11 +93,10 @@ const Component = ({ products, className, children }) => {
                   <td>{product.price * product.quantity}</td>
                   <td>
                     <Button
-                      variant='trash'
-                    // onClick={event => {
-                    //   event.preventDefault();
-                    //   return removeProduct(product.name);
-                    // }}
+                      onClick={event => {
+                        event.preventDefault();
+                        return removeProduct(product.name);
+                      }}
                     >
                       <FontAwesomeIcon icon={faTrashAlt}>Remove</FontAwesomeIcon>
                     </Button>
@@ -111,7 +114,6 @@ const Component = ({ products, className, children }) => {
         <div className={styles.checkout}>
           <NavLink exact to={'/'} activeClassName='active' className={styles.link}>
             <Button
-              variant='small'
             // onClick={event => {
             //   event.preventDefault();
             //   return removeProducts();
@@ -128,8 +130,9 @@ const Component = ({ products, className, children }) => {
 
 Component.propTypes = {
   products: PropTypes.array,
-  children: PropTypes.node,
-  className: PropTypes.string,
+  removeProduct: PropTypes.func,
+  removeProducts: PropTypes.func,
+  updateQuantity: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -137,11 +140,16 @@ const mapStateToProps = state => ({
   subtotal: 0,
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => {
+  return {
+    addProduct: id => dispatch(addProduct(id)),
+    removeProduct: name => dispatch(removeProduct(name)),
+    updateQuantity: (quantity, id) =>
+      dispatch(updateQuantity(quantity, id)),
+  };
+};
 
-const CartContainer = connect(mapStateToProps)(Component);
+const CartContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   // Component as Cart,
