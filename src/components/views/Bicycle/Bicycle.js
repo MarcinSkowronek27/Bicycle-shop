@@ -55,15 +55,15 @@ class BicyclePage extends React.Component {
             <Grid item xs={12} sm={6} lg={12} className={styles.containerImage}>
               <Grid key={item.id} container className={styles.gallery}>
                 <Grid item xs={12} md={6} lg={6} className={styles.wrapperLeft}>
-                  <img src={item.moreImage[0].image} className={styles.imgLarge} alt='imgFirst' />
+                  <img src={item.moreImage[0]} className={styles.imgLarge} alt='imgFirst' />
                 </Grid>
 
                 <Grid item xs={12} md={6} lg={6} className={styles.wrapperRight}>
                   <div className={`row pb-4 ${styles.wrapperSmall}`}>
-                    <img src={item.moreImage[1].image} alt='imgSecond' />
+                    <img src={item.moreImage[1]} alt='imgSecond' />
                   </div>
                   <div className={`row ${styles.wrapperSmall}`}>
-                    <img src={item.moreImage[2].image} alt='imgThird' />
+                    <img src={item.moreImage[2]} alt='imgThird' />
                   </div>
                 </Grid>
               </Grid>

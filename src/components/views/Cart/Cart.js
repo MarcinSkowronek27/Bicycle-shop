@@ -8,6 +8,7 @@ import { getAll } from '../../../redux/cartRedux';
 
 import styles from './Cart.module.scss';
 
+import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
@@ -27,6 +28,7 @@ const Component = ({ products, className, children }) => {
           <thead>
             <tr>
               <th>Product</th>
+              <th>Comments</th>
               <th>Quantity</th>
               <th>Price</th>
               <th>Total</th>
@@ -46,12 +48,24 @@ const Component = ({ products, className, children }) => {
                     </div>
                   </td>
                   <td>
+                    <TextField
+                      id="text"
+                      label="Customize your product"
+                      name="text"
+                      multiline
+                      rows={6}
+                      variant="outlined"
+                      // helperText="Min. 20 characters"
+                      // onChange={updateTextField}
+                    />
+                  </td>
+                  <td>
                     <Button
                       variant='quantity'
-                      // onClick={event => {
-                      //   event.preventDefault();
-                      //   updateQuantity(-1, product.productId);
-                      // }}
+                    // onClick={event => {
+                    //   event.preventDefault();
+                    //   updateQuantity(-1, product.productId);
+                    // }}
                     >
                       <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
                     </Button>
@@ -63,10 +77,10 @@ const Component = ({ products, className, children }) => {
                     />
                     <Button
                       variant='quantity'
-                      // onClick={event => {
-                      //   event.preventDefault();
-                      //   updateQuantity(1, product.productId);
-                      // }}
+                    // onClick={event => {
+                    //   event.preventDefault();
+                    //   updateQuantity(1, product.productId);
+                    // }}
                     >
                       <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
                     </Button>
@@ -76,10 +90,10 @@ const Component = ({ products, className, children }) => {
                   <td>
                     <Button
                       variant='trash'
-                      // onClick={event => {
-                      //   event.preventDefault();
-                      //   return removeProduct(product.name);
-                      // }}
+                    // onClick={event => {
+                    //   event.preventDefault();
+                    //   return removeProduct(product.name);
+                    // }}
                     >
                       <FontAwesomeIcon icon={faTrashAlt}>Remove</FontAwesomeIcon>
                     </Button>
@@ -98,10 +112,10 @@ const Component = ({ products, className, children }) => {
           <NavLink exact to={'/'} activeClassName='active' className={styles.link}>
             <Button
               variant='small'
-              // onClick={event => {
-              //   event.preventDefault();
-              //   return removeProducts();
-              // }}
+            // onClick={event => {
+            //   event.preventDefault();
+            //   return removeProducts();
+            // }}
             >
               GO TO SUMMARY
             </Button>

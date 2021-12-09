@@ -18,9 +18,9 @@
       height: 100%;
       width: 800px;
       .font_style {
-        font-family: "Meow Script", cursive;
+        font-family: 'Comfortaa', cursive;
         font-size: 60px;
-        color: saddlebrown;
+        color: $color-main_font;
         // border: solid red;
       }
     }
@@ -55,7 +55,7 @@
 
         .icon {
           font-size: 32px;
-          color: saddlebrown;
+          color: $color-main_font;
           vertical-align: middle;
           margin-top: -3px;
           margin-right: 0.8rem;
@@ -73,7 +73,7 @@
       .cartBox {
         display: inline-block;
         position: relative;
-        color: saddlebrown;
+        color: $color-main_font;
         border: none;
         background-color: transparent;
         &:hover {

@@ -11,6 +11,11 @@ export const initialState = {
         oldPrice: 1800,
         category: 'road bike',
         quantity: 1,
+        moreImage: [
+          'https://images.pexels.com/photos/5465247/pexels-photo-5465247.jpeg?cs=srgb&dl=pexels-cottonbro-5465247.jpg&fm=jpg',
+          'https://images.pexels.com/photos/5465249/pexels-photo-5465249.jpeg?cs=srgb&dl=pexels-cottonbro-5465249.jpg&fm=jpg',
+          'https://images.pexels.com/photos/5465238/pexels-photo-5465238.jpeg?cs=srgb&dl=pexels-cottonbro-5465238.jpg&fm=jpg',
+        ],
       },
       {
         id: 2,
@@ -23,18 +28,9 @@ export const initialState = {
         category: 'mountain bike',
         quantity: 1,
         moreImage: [
-          {
-            id: 1,
-            image: '',
-          },
-          {
-            id: 2,
-            image: '',
-          },
-          {
-            id: 3,
-            image: '',
-          },
+          'https://images.pexels.com/photos/10288966/pexels-photo-10288966.jpeg?cs=srgb&dl=pexels-tina-simakova-10288966.jpg&fm=jpg',
+          'https://images.pexels.com/photos/1102775/pexels-photo-1102775.jpeg?cs=srgb&dl=pexels-bear-gingerbliss-1102775.jpg&fm=jpg',
+          'https://images.pexels.com/photos/1548771/pexels-photo-1548771.jpeg?cs=srgb&dl=pexels-sebastian-voortman-1548771.jpg&fm=jpg',
         ],
       },
       {
@@ -47,18 +43,12 @@ export const initialState = {
         category: 'road bike',
         quantity: 1,
         moreImage: [
-          {
-            id: 1,
-            image: 'https://images.pexels.com/photos/5911709/pexels-photo-5911709.jpeg?cs=srgb&dl=pexels-cottonbro-5911709.jpg&fm=jpg',
-          },
-          {
-            id: 2,
-            image: 'https://images.pexels.com/photos/5911702/pexels-photo-5911702.jpeg?cs=srgb&dl=pexels-cottonbro-5911702.jpg&fm=jpg',
-          },
-          {
-            id: 3,
-            image: 'https://images.pexels.com/photos/5914907/pexels-photo-5914907.jpeg?cs=srgb&dl=pexels-cottonbro-5914907.jpg&fm=jpg',
-          },
+          'https://images.pexels.com/photos/5911709/pexels-photo-5911709.jpeg?cs=srgb&dl=pexels-cottonbro-5911709.jpg&fm=jpg',
+
+          'https://images.pexels.com/photos/5911702/pexels-photo-5911702.jpeg?cs=srgb&dl=pexels-cottonbro-5911702.jpg&fm=jpg',
+
+          'https://images.pexels.com/photos/5914907/pexels-photo-5914907.jpeg?cs=srgb&dl=pexels-cottonbro-5914907.jpg&fm=jpg',
+
         ],
       },
     ],
