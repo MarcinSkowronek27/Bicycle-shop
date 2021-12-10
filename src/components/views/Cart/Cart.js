@@ -47,9 +47,9 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
               return (
                 <tr key={product.id}>
                   <td>
-                    <div>{product.name}</div>
+                    <div>{product.title}</div>
                     <div className={styles.photo}>
-                      <img src={product.image} alt={product.name} />
+                      <img src={product.image} alt={product.title} />
                     </div>
                   </td>
                   <td>
@@ -95,7 +95,8 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
                     <Button
                       onClick={event => {
                         event.preventDefault();
-                        return removeProduct(product.name);
+                        // console.log(product.name);
+                        return removeProduct(product.title);
                       }}
                     >
                       <FontAwesomeIcon icon={faTrashAlt}>Remove</FontAwesomeIcon>

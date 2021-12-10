@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/bicyclesRedux';
+import { addProduct } from '../../../redux/cartRedux';
 
 import styles from './Bicycle.module.scss';
 
@@ -41,13 +42,27 @@ class BicyclePage extends React.Component {
     };
   }
 
+
   render() {
+    // const { id, title, image, price, quantity, addToCart } = this.props;
+    const { addToCart } = this.props;
     // const id = this.state.id;
     const allBicycles = this.props.bicycles;
+    const bicycle = allBicycles.filter(bicycle => bicycle.id == this.state.id);  // eslint-disable-line
+    const handleAddToCart = () => {
+      const cartPayload = {
+        title: allBicycles[this.state.id-1].title,
+        id: allBicycles[this.state.id-1].id,
+        price: allBicycles[this.state.id-1].price,
+        image: allBicycles[this.state.id-1].image,
+        quantity: allBicycles[this.state.id-1].quantity,
+      };
+      console.log(cartPayload);
+      addToCart(cartPayload);
+    };
     // console.log('id', id);
     console.log('allBicycles', allBicycles);
     console.log('oneBicycle', allBicycles[2].moreImage[0].image1);
-    const bicycle = allBicycles.filter(bicycle => bicycle.id == this.state.id);  // eslint-disable-line
     return (
       <div className={styles.root}>
         {bicycle.map(item => (
@@ -115,7 +130,11 @@ class BicyclePage extends React.Component {
                   }}
                 >
                   <Button className={styles.cart}
-                    onClick={() => this.handleClick('rower')}>
+                    onClick={event => {
+                      event.preventDefault();
+                      return handleAddToCart(bicycle.id, bicycle.title, bicycle.price, bicycle.image, bicycle.quantity);
+                    }}
+                  >
                     <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon>ADD
                     TO CART
                   </Button>
@@ -190,17 +209,25 @@ BicyclePage.propTypes = {
   className: PropTypes.string,
   bicycles: PropTypes.array,
   id: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  image: PropTypes.string,
+  price: PropTypes.number,
+  promo: PropTypes.string,
+  category: PropTypes.string,
+  quantity: PropTypes.number,
+  addToCart: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   bicycles: getAll(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  addToCart: cartPayload => dispatch(addProduct(cartPayload)),
+});
 
-const BicyclePageContainer = connect(mapStateToProps)(BicyclePage);
+const BicyclePageContainer = connect(mapStateToProps, mapDispatchToProps)(BicyclePage);
 
 export {
   // Component as Bicycle,

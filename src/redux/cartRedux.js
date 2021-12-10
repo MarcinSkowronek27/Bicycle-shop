@@ -48,7 +48,7 @@ export default function reducer(statePart = [], action = {}) {
     case REMOVE_PRODUCT: {
       return {
         ...statePart,
-        products: statePart.products.filter(product => product.name !== action.name),
+        products: statePart.products.filter(product => product.title !== action.name),
       };
     }
     case REMOVE_PRODUCTS: {
