@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import chain from '../../../icons/chain.png';
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getCount } from '../../../redux/cartRedux';
 
 import styles from './Header.module.scss';
 
@@ -36,7 +36,7 @@ HideOnScroll.propTypes = {
   window: PropTypes.func,
 };
 
-export default function Component(className, props) {
+const Component = ({className, props, cartCount}) => {
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -64,7 +64,7 @@ export default function Component(className, props) {
                   <div className={styles.cartIcon}>
                     <FontAwesomeIcon className={styles.icon} icon={faShoppingBasket} />
                   </div>
-                  {/* <div className={styles.cartCounter}>{cartCount}</div> */}
+                  <div className={styles.cartCounter}>{cartCount}</div>
                 </button>
               </NavLink>
               {/* </div> */}
@@ -75,25 +75,27 @@ export default function Component(className, props) {
       <Toolbar />
     </div>
   );
-}
-
-Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+Component.propTypes = {
+  props: PropTypes.node,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  cartCount: PropTypes.number,
+};
+
+const mapStateToProps = state => ({
+  cartCount: getCount(state),
+});
 
 // const mapDispatchToProps = dispatch => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const HeaderContainer = connect(mapStateToProps)(Component);
 
 export {
-  Component as Header,
-  // Container as Header,
+  // Component as Header,
+  HeaderContainer as Header,
   Component as HeaderComponent,
 };
