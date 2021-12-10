@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { BicycleAddComponent } from './BicycleAdd';
+import { SummaryComponent } from './Summary';
 
-describe('Component BicycleAdd', () => {
+describe('Component Summary', () => {
   it('should render without crashing', () => {
-    const component = shallow(<BicycleAddComponent />);
+    const component = shallow(<SummaryComponent />);
     expect(component).toBeTruthy();
   });
 });

@@ -68,6 +68,7 @@ export const initialState = {
         price: 1700,
         category: 'road bike',
         quantity: 1,
+        comments: 'lorem habib mkdf erwocx fsdperwe',
       },
     ],
   },

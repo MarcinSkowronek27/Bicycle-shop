@@ -28,7 +28,7 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
   return (
     <div className={styles.root}>
       <Container className={styles.container} maxWidth='lg'>
-        <h5>Your cart</h5>
+        <h5>YOUR CART</h5>
         <table>
           <thead>
             <tr>
@@ -112,7 +112,7 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
           Total: {subtotal > 0 ? subtotal + delivery : 0}
         </div>
         <div className={styles.checkout}>
-          <NavLink exact to={'/'} activeClassName='active' className={styles.link}>
+          <NavLink exact to={'/bicycle/summary'} activeClassName='active' className={styles.link}>
             <Button
             // onClick={event => {
             //   event.preventDefault();

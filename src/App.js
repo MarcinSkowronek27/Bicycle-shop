@@ -11,7 +11,7 @@ import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { Homepage } from './components/views/Homepage/Homepage';
 import { Bicycle} from './components/views/Bicycle/Bicycle';
 import { Cart} from './components/views/Cart/Cart';
-import { BicycleAdd } from './components/views/BicycleAdd/BicycleAdd';
+import { Summary } from './components/views/Summary/Summary';
 import { NotFound } from './components/views/NotFound/NotFound';
 
 const theme = createTheme({
@@ -30,7 +30,7 @@ const App = () => (
             <Switch>
               <Route exact path='/' component={Homepage} />
               <Route exact path='/bicycle/cart' component={Cart} />
-              <Route exact path='/bicycle/add' component={BicycleAdd} />
+              <Route exact path='/bicycle/summary' component={Summary} />
               <Route exact path='/bicycle/:id' component={Bicycle} />
               <Route path='*' component={NotFound} />
             </Switch>
