@@ -26,17 +26,26 @@ export const updateQuantity = (quantity, id) => ({
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
     case ADD_PRODUCT: {
+      const cart = {
+        products: [
+        ],
+      };
       const id = action.payload.id;
-      console.log(id);
+      // console.log(cart);
       let findId = statePart.products.find(product => product.id === id);
       if (typeof findId !== 'undefined') {
         return {
           ...statePart,
-          products: statePart.products.map(product =>
-            product.id === id
-              ? { ...product, quantity: product.quantity + 1 }
-              : { ...product }
-          ),
+          products: statePart.products.map(product => {
+            if (cart.products !== 'undefined') {
+              cart.products.push(product);
+              localStorage.setItem('cart', JSON.stringify(product));
+              console.log(product);
+              cart.products.push(product);
+            }
+            if (product.id === id) return { ...product, quantity: product.quantity + 1 };
+            return { ...product };
+          }),
         };
       } else {
         return {

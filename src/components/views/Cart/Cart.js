@@ -25,6 +25,15 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
   const delivery = 20;
   let subtotal = 0;
 
+  // const cart = {
+  //   products: [
+
+  //   ],
+  // };
+
+  // const addToCart = () => {
+
+  // };
   return (
     <div className={styles.root}>
       <Container className={styles.container} maxWidth='lg'>
@@ -84,6 +93,7 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
                       onClick={event => {
                         event.preventDefault();
                         updateQuantity(1, product.id);
+                        // addToCart();
                       }}
                     >
                       <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
