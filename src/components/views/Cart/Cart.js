@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { connect } from 'react-redux';
 import {
-  getAll,
+  getAllCart,
   addProduct,
   removeProduct,
   updateQuantity,
@@ -150,7 +150,7 @@ Component.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  products: getAll(state),
+  products: getAllCart(state),
   subtotal: 0,
 });
 

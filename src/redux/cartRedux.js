@@ -1,5 +1,5 @@
 /* selectors */
-export const getAll = ({ cart }) => cart.products;
+export const getAllCart = ({ cart }) => cart.products;
 export const getCount = ({ cart }) => cart.products.length;
 
 /* action name creator */

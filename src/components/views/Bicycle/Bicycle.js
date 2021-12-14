@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button';
 
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/bicyclesRedux';
-import { addProduct } from '../../../redux/cartRedux';
+import { getAllCart, addProduct, updateQuantity } from '../../../redux/cartRedux';
 
 import styles from './Bicycle.module.scss';
 
@@ -51,7 +51,7 @@ class BicyclePage extends React.Component {
 
   render() {
     // const { id, title, image, price, quantity, addToCart } = this.props;
-    const { addToCart } = this.props;
+    const { addToCart, updateQuantity, carts } = this.props;
     // const id = this.state.id;
     const allBicycles = this.props.bicycles;
     const bicycle = allBicycles.filter(bicycle => bicycle.id == this.state.id);  // eslint-disable-line
@@ -67,8 +67,9 @@ class BicyclePage extends React.Component {
       addToCart(cartPayload);
     };
     // console.log('id', id);
-    console.log('allBicycles', allBicycles);
-    console.log('oneBicycle', allBicycles[2].moreImage[0].image1);
+    // console.log('allBicycles', allBicycles);
+    console.log('oneBicycle', bicycle);
+    // console.log('oneBicycle', allBicycles[2].moreImage[0].image1);
     return (
       <div className={styles.root}>
         {bicycle.map(item => (
@@ -146,35 +147,48 @@ class BicyclePage extends React.Component {
                   </Button>
                 </Box>
               </Grid>
-              <Grid item xs={12} className={styles.break}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'flex-start',
-                    flexWrap: 'wrap',
-                    alignItems: 'flex-start',
-                    my: 1,
-                    gap: 5,
-                  }}
-                >
-                  <p className={styles.quantityText}>
-                    <b>Quantity: </b>
-                  </p>
-                  <input
-                    type='text'
-                    id='quantity'
-                    name='quantity'
-                    defaultValue={item.quantity}
-                    className={styles.quantityInput}
-                  />
-                  <Button className={styles.icon}>
-                    <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
-                  </Button>
-                  <Button className={styles.icon}>
-                    <FontAwesomeIcon icon={faPlus}>-</FontAwesomeIcon>
-                  </Button>
-                </Box>
-              </Grid>
+              {carts.map(product => {
+                return (
+                  <Grid  key={product.id} item xs={12} className={styles.break}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        flexWrap: 'wrap',
+                        alignItems: 'flex-start',
+                        my: 1,
+                        gap: 5,
+                      }}
+                    >
+                      <p className={styles.quantityText}>
+                        <b>Quantity: </b>
+                      </p>
+                      <input
+                        type='text'
+                        id='quantity'
+                        name='quantity'
+                        value={product.quantity}
+                        className={styles.quantityInput}
+                      />
+                      <Button className={styles.icon}
+                        onClick={event => {
+                          event.preventDefault();
+                          updateQuantity(-1, product.id);
+                        }}>
+                        <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
+                      </Button>
+                      <Button className={styles.icon}
+                        onClick={event => {
+                          event.preventDefault();
+                          updateQuantity(1, product.id);
+                        }}>
+                        <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
+                      </Button>
+                    </Box>
+                  </Grid>
+                );
+              })}
+
               <Grid item xs={12} className={styles.break}>
                 <Box
                 // sx={{
@@ -214,6 +228,7 @@ BicyclePage.propTypes = {
   match: PropTypes.object,
   className: PropTypes.string,
   bicycles: PropTypes.array,
+  carts: PropTypes.array,
   id: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
@@ -223,14 +238,17 @@ BicyclePage.propTypes = {
   category: PropTypes.string,
   quantity: PropTypes.number,
   addToCart: PropTypes.func,
+  updateQuantity: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   bicycles: getAll(state),
+  carts: getAllCart(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   addToCart: cartPayload => dispatch(addProduct(cartPayload)),
+  updateQuantity: (quantity, id) => dispatch(updateQuantity(quantity, id)),
 });
 
 const BicyclePageContainer = connect(mapStateToProps, mapDispatchToProps)(BicyclePage);

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getAll } from '../../../redux/cartRedux';
+import { getAllCart } from '../../../redux/cartRedux';
 
 import styles from './Summary.module.scss';
 import Container from '@material-ui/core/Container';
@@ -132,7 +132,7 @@ Component.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  products: getAll(state),
+  products: getAllCart(state),
   subtotal: 0,
 });
 
