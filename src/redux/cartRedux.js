@@ -37,12 +37,10 @@ export default function reducer(statePart = [], action = {}) {
         return {
           ...statePart,
           products: statePart.products.map(product => {
-            if (cart.products !== 'undefined') {
-              cart.products.push(product);
-              localStorage.setItem('cart', JSON.stringify(product));
-              console.log(product);
-              cart.products.push(product);
-            }
+            cart.products.push(product);
+            localStorage.setItem('cart', JSON.stringify(product));
+            console.log(product);
+            cart.products.push(product);
             if (product.id === id) return { ...product, quantity: product.quantity + 1 };
             return { ...product };
           }),

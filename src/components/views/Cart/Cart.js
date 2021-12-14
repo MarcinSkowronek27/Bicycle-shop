@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 // import clsx from 'clsx';
 
@@ -30,10 +31,11 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
 
   //   ],
   // };
-
-  // const addToCart = () => {
-
-  // };
+  const [commentValue, setCommentValue] = useState('');
+  const updateTextField = (e) => {
+    console.log(e.currentTarget.value);
+    setCommentValue(e.currentTarget.value);
+  };
   return (
     <div className={styles.root}>
       <Container className={styles.container} maxWidth='lg'>
@@ -69,8 +71,9 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
                       multiline
                       rows={6}
                       variant="outlined"
-                    // helperText="Min. 20 characters"
-                    // onChange={updateTextField}
+                      value={commentValue}
+                      // helperText="Min. 20 characters"
+                      onChange={updateTextField}
                     />
                   </td>
                   <td>

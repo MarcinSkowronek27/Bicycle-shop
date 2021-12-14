@@ -22,6 +22,7 @@ class BicyclePage extends React.Component {
 
   state = {
     id: null,
+    // comment: '',
   };
 
   handleClick = (test) => {
@@ -34,6 +35,11 @@ class BicyclePage extends React.Component {
       id: id,
     });
   }
+
+  // updateTextField = (event) => {
+
+  //   this.setState({ comment: { [event.target.name]: event.target.value } });
+  // }
 
   srcset(image, size, rows = 1, cols = 1) {
     return {
@@ -51,11 +57,11 @@ class BicyclePage extends React.Component {
     const bicycle = allBicycles.filter(bicycle => bicycle.id == this.state.id);  // eslint-disable-line
     const handleAddToCart = () => {
       const cartPayload = {
-        title: allBicycles[this.state.id-1].title,
-        id: allBicycles[this.state.id-1].id,
-        price: allBicycles[this.state.id-1].price,
-        image: allBicycles[this.state.id-1].image,
-        quantity: allBicycles[this.state.id-1].quantity,
+        title: allBicycles[this.state.id - 1].title,
+        id: allBicycles[this.state.id - 1].id,
+        price: allBicycles[this.state.id - 1].price,
+        image: allBicycles[this.state.id - 1].image,
+        quantity: allBicycles[this.state.id - 1].quantity,
       };
       console.log(cartPayload);
       addToCart(cartPayload);
