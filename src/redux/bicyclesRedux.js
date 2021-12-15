@@ -1,5 +1,7 @@
+import Axios from 'axios';
+
 /* selectors */
-export const getAll = ({bicycles}) => bicycles.data;
+export const getAll = ({ bicycles }) => bicycles.data;
 
 /* action name creator */
 const reducerName = 'bicycles';
@@ -16,7 +18,23 @@ export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 
 /* thunk creators */
+export const fetchPublished = () => {
+  return (dispatch, getState) => {
+    const { bicycles } = getState();
+    if (bicycles.data.length === 0 && bicycles.loading.active === false) {
+      dispatch(fetchStarted());
 
+      Axios
+        .get('http://localhost:8000/api/bicycles')
+        .then(res => {
+          dispatch(fetchSuccess(res.data));
+        })
+        .catch(err => {
+          dispatch(fetchError(err.message || true));
+        });
+    }
+  };
+};
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {

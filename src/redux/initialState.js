@@ -1,6 +1,6 @@
 export const initialState = {
   bicycles: {
-    data: [
+    data: [/*
       {
         id: 1,
         title: 'Torpedo 230',
@@ -51,7 +51,7 @@ export const initialState = {
 
         ],
       },
-    ],
+    */],
     loading: {
       active: false,
       error: false,

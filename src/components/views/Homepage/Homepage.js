@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 import styles from './Homepage.module.scss';
-import { getAll } from '../../../redux/bicyclesRedux';
+import { getAll, fetchPublished } from '../../../redux/bicyclesRedux';
 
 import { Card } from '@material-ui/core';
 import { CardMedia } from '@material-ui/core';
@@ -18,8 +18,9 @@ import Divider from '@material-ui/core/Divider';
 import { Typography } from '@material-ui/core';
 import { Link } from '@material-ui/core';
 
-const Component = ({ className, allBicycles, children }) => {
+const Component = ({ className, allBicycles, children, fetchPublishedBicycles }) => {
 
+  fetchPublishedBicycles();
   return (
     <div className={clsx(className, styles.root)}>
       <div className={clsx(className, styles.bicyclesContainer)}>
@@ -70,17 +71,18 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   allBicycles: PropTypes.array,
+  fetchPublishedBicycles: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   allBicycles: getAll(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  fetchPublishedBicycles: () => dispatch(fetchPublished()),
+});
 
-const Container = connect(mapStateToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   // Component as Homepage,
