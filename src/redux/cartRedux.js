@@ -68,6 +68,7 @@ export default function reducer(statePart = [], action = {}) {
       return {
         ...statePart,
         products: statePart.products.map(product => {
+          console.log(statePart);
           if (product.id === action.id) {
             if (
               product.quantity >= 1 ||

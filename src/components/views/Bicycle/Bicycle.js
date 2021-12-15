@@ -51,7 +51,7 @@ class BicyclePage extends React.Component {
 
   render() {
     // const { id, title, image, price, quantity, addToCart } = this.props;
-    const { addToCart, updateQuantity, carts } = this.props;
+    const { addToCart, updateQuantity} = this.props;
     // const id = this.state.id;
     const allBicycles = this.props.bicycles;
     const bicycle = allBicycles.filter(bicycle => bicycle.id == this.state.id);  // eslint-disable-line
@@ -69,6 +69,7 @@ class BicyclePage extends React.Component {
     // console.log('id', id);
     // console.log('allBicycles', allBicycles);
     console.log('oneBicycle', bicycle);
+    // console.log(carts);
     // console.log('oneBicycle', allBicycles[2].moreImage[0].image1);
     return (
       <div className={styles.root}>
@@ -147,48 +148,43 @@ class BicyclePage extends React.Component {
                   </Button>
                 </Box>
               </Grid>
-              {carts.map(product => {
-                return (
-                  <Grid  key={product.id} item xs={12} className={styles.break}>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        flexWrap: 'wrap',
-                        alignItems: 'flex-start',
-                        my: 1,
-                        gap: 5,
-                      }}
-                    >
-                      <p className={styles.quantityText}>
-                        <b>Quantity: </b>
-                      </p>
-                      <input
-                        type='text'
-                        id='quantity'
-                        name='quantity'
-                        value={product.quantity}
-                        className={styles.quantityInput}
-                      />
-                      <Button className={styles.icon}
-                        onClick={event => {
-                          event.preventDefault();
-                          updateQuantity(-1, product.id);
-                        }}>
-                        <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
-                      </Button>
-                      <Button className={styles.icon}
-                        onClick={event => {
-                          event.preventDefault();
-                          updateQuantity(1, product.id);
-                        }}>
-                        <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
-                      </Button>
-                    </Box>
-                  </Grid>
-                );
-              })}
-
+              <Grid item xs={12} className={styles.break}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'flex-start',
+                    flexWrap: 'wrap',
+                    alignItems: 'flex-start',
+                    my: 1,
+                    gap: 5,
+                  }}
+                >
+                  <p className={styles.quantityText}>
+                    <b>Quantity: </b>
+                  </p>
+                  <input
+                    type='text'
+                    id='quantity'
+                    name='quantity'
+                    value={item.quantity}
+                    className={styles.quantityInput}
+                  />
+                  <Button className={styles.icon}
+                    onClick={event => {
+                      event.preventDefault();
+                      updateQuantity(-1, item.id);
+                    }}>
+                    <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
+                  </Button>
+                  <Button className={styles.icon}
+                    onClick={event => {
+                      event.preventDefault();
+                      updateQuantity(1, item.id);
+                    }}>
+                    <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
+                  </Button>
+                </Box>
+              </Grid>
               <Grid item xs={12} className={styles.break}>
                 <Box
                 // sx={{

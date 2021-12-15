@@ -33,7 +33,10 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
   // };
   const [commentValue, setCommentValue] = useState('');
   const updateTextField = (e) => {
-    console.log(e.currentTarget.value);
+    const onebicycle = products.filter(bicycle => bicycle.id === e.currentTarget.id);
+    console.log(onebicycle);
+    if (onebicycle)
+      console.log(e.currentTarget);
     setCommentValue(e.currentTarget.value);
   };
   return (
