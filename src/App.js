@@ -29,9 +29,9 @@ const App = () => (
           <MainLayout>
             <Switch>
               <Route exact path='/' component={Homepage} />
-              <Route exact path='/bicycle/cart' component={Cart} />
-              <Route exact path='/bicycle/summary' component={Summary} />
-              <Route exact path='/bicycle/:id' component={Bicycle} />
+              <Route exact path='/bicycles/cart' component={Cart} />
+              <Route exact path='/bicycles/summary' component={Summary} />
+              <Route exact path='/bicycles/:id' component={Bicycle} />
               <Route path='*' component={NotFound} />
             </Switch>
           </MainLayout>

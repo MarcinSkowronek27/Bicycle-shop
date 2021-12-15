@@ -56,6 +56,7 @@ export const initialState = {
       active: false,
       error: false,
     },
+    oneBicycle: {},
   },
   cart: {
     products: [

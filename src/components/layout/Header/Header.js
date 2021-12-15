@@ -59,7 +59,7 @@ const Component = ({className, props, cartCount}) => {
               </NavLink>
               <h1 className={styles.font_style}>Bicycles shop</h1>
               {/* <div className={`col text-right ${styles.cart}`}> */}
-              <NavLink exact to={'/bicycle/cart'} activeClassName='active' className={styles.cart}>
+              <NavLink exact to={'/bicycles/cart'} activeClassName='active' className={styles.cart}>
                 <button className={styles.cartBox}>
                   <div className={styles.cartIcon}>
                     <FontAwesomeIcon className={styles.icon} icon={faShoppingBasket} />

@@ -129,7 +129,7 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
           Total: {subtotal > 0 ? subtotal + delivery : 0}
         </div>
         <div className={styles.checkout}>
-          <NavLink exact to={'/bicycle/summary'} activeClassName='active' className={styles.link}>
+          <NavLink exact to={'/bicycles/summary'} activeClassName='active' className={styles.link}>
             <Button
             // onClick={event => {
             //   event.preventDefault();

@@ -25,7 +25,7 @@ const Component = ({ className, allBicycles, children, fetchPublishedBicycles })
     <div className={clsx(className, styles.root)}>
       <div className={clsx(className, styles.bicyclesContainer)}>
         {allBicycles.map((bicycle, index) => (
-          <Card key={bicycle.id} className={clsx(className, styles.card)} component={Link} href={`bicycle/${bicycle.id}`}>
+          <Card key={bicycle._id} className={clsx(className, styles.card)} component={Link} href={`bicycles/${bicycle._id}`}>
             <div className={styles.photo}>
               {bicycle.image &&
                 <CardMedia
