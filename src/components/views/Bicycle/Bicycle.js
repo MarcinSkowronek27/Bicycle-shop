@@ -19,18 +19,25 @@ import { addProduct, updateQuantity } from '../../../redux/cartRedux';
 import styles from './Bicycle.module.scss';
 
 class BicyclePage extends React.Component {
+  constructor(props) {
+    super(props);
 
-  state = {
-    id: null,
-    // comment: '',
-  };
+    this.state = {
+      id: null,
+      value: 1,
+    };
 
-  handleClick = (test) => {
-    console.log(test + ' habababa');
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+    console.log(event.target.value);
+    console.log(this.state.value);
   }
 
   componentDidMount() {
-    const { fetchOneBicycle} = this.props;
+    const { fetchOneBicycle } = this.props;
     fetchOneBicycle();
     let id = this.props.match.params.id;
     this.setState({
@@ -77,7 +84,7 @@ class BicyclePage extends React.Component {
     // console.log('oneBicycle', allBicycles[2].moreImage[0].image1);
     return (
       <div className={styles.root}>
-        <Grid container  spacing={2} className={styles.container}>
+        <Grid container spacing={2} className={styles.container}>
           <Grid item xs={12} sm={6} lg={12} className={styles.containerImage}>
             <Grid container className={styles.gallery}>
               <Grid item xs={12} md={6} lg={6} className={styles.wrapperLeft}>
@@ -169,20 +176,21 @@ class BicyclePage extends React.Component {
                   type='text'
                   id='quantity'
                   name='quantity'
-                  value={bicycle.quantity}
+                  value={this.state.value}
+                  onChange={this.handleChange}
                   className={styles.quantityInput}
                 />
                 <Button className={styles.icon}
                   onClick={event => {
                     event.preventDefault();
-                    updateQuantity(-1, bicycle._id);
+                    updateQuantity(-1, this.setState({value: this.state.value -1}));
                   }}>
                   <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
                 </Button>
                 <Button className={styles.icon}
                   onClick={event => {
                     event.preventDefault();
-                    updateQuantity(1, bicycle._id);
+                    updateQuantity(1, this.setState({value: this.state.value +1}));
                   }}>
                   <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
                 </Button>
