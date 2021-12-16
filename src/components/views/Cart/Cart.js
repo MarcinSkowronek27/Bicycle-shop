@@ -57,7 +57,7 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
           <tbody>
             {products.map(product => {
               subtotal += product.price * product.quantity;
-
+              console.log(product);
               return (
                 <tr key={product.id}>
                   <td>
@@ -83,7 +83,7 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
                     <Button
                       onClick={event => {
                         event.preventDefault();
-                        updateQuantity(-1, product.id);
+                        updateQuantity(-1, product.title);
                       }}
                     >
                       <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
@@ -98,7 +98,7 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
                     <Button
                       onClick={event => {
                         event.preventDefault();
-                        updateQuantity(1, product.id);
+                        updateQuantity(1, product.title);
                         // addToCart();
                       }}
                     >

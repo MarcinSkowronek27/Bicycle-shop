@@ -23,7 +23,6 @@ class BicyclePage extends React.Component {
     super(props);
 
     this.state = {
-      id: null,
       value: 1,
     };
 
@@ -32,8 +31,16 @@ class BicyclePage extends React.Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
-    console.log(event.target.value);
-    console.log(this.state.value);
+    // console.log(event.target.value);
+    // console.log(this.state.value);
+  }
+
+  addButton() {
+    this.setState({value: this.state.value +1});
+  }
+
+  remButton() {
+    this.setState({value: this.state.value -1});
   }
 
   componentDidMount() {
@@ -183,14 +190,16 @@ class BicyclePage extends React.Component {
                 <Button className={styles.icon}
                   onClick={event => {
                     event.preventDefault();
-                    updateQuantity(-1, this.setState({value: this.state.value -1}));
+                    updateQuantity(-1, bicycle.title);
+                    this.remButton();
                   }}>
                   <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
                 </Button>
                 <Button className={styles.icon}
                   onClick={event => {
                     event.preventDefault();
-                    updateQuantity(1, this.setState({value: this.state.value +1}));
+                    updateQuantity(1, bicycle.title);
+                    this.addButton();
                   }}>
                   <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
                 </Button>

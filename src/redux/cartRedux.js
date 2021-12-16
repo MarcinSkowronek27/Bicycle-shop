@@ -1,3 +1,4 @@
+// import { initialState } from './initialState';
 /* selectors */
 export const getAllCart = ({ cart }) => cart.products;
 export const getCount = ({ cart }) => cart.products.length;
@@ -24,28 +25,28 @@ export const updateQuantity = (quantity, id) => ({
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
+  // let cart = {
+  //   products: [
+  //   ],
+  // };
   switch (action.type) {
     case ADD_PRODUCT: {
-      const cart = {
-        products: [
-        ],
-      };
       const id = action.payload.id;
       // console.log(cart);
       let findId = statePart.products.find(product => product.id === id);
+      // console.log(findId);
       if (typeof findId !== 'undefined') {
         return {
           ...statePart,
           products: statePart.products.map(product => {
-            cart.products.push(product);
-            localStorage.setItem('cart', JSON.stringify(product));
-            console.log(product);
-            cart.products.push(product);
+            // console.log(initialState.cart.products);
+            // initialState.cart.products.push(product);
             if (product.id === id) return { ...product, quantity: product.quantity + 1 };
             return { ...product };
           }),
         };
       } else {
+        // console.log('tutaj działa');
         return {
           ...statePart,
           products: [...statePart.products, action.payload],
@@ -53,6 +54,7 @@ export default function reducer(statePart = [], action = {}) {
       }
     }
     case REMOVE_PRODUCT: {
+      // localStorage.setItem('cart', JSON.stringify(cart.products));
       return {
         ...statePart,
         products: statePart.products.filter(product => product.title !== action.name),
@@ -68,8 +70,10 @@ export default function reducer(statePart = [], action = {}) {
       return {
         ...statePart,
         products: statePart.products.map(product => {
-          console.log(statePart);
-          if (product.id === action.id) {
+          // console.log(product);
+          // console.log(action.quantity);
+          // console.log(statePart);
+          if (product.title === action.id) {
             if (
               product.quantity >= 1 ||
               (product.quantity < 1 && action.quantity > 0)
