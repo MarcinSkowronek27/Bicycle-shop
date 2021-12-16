@@ -80,7 +80,7 @@ class BicyclePage extends React.Component {
         id: bicycle._id,
         price: bicycle.price,
         image: bicycle.image,
-        quantity: bicycle.quantity,
+        quantity: this.state.value,
       };
       // console.log(cartPayload);
       addToCart(cartPayload);
@@ -190,7 +190,7 @@ class BicyclePage extends React.Component {
                 <Button className={styles.icon}
                   onClick={event => {
                     event.preventDefault();
-                    updateQuantity(-1, bicycle.title);
+                    // updateQuantity(-1, bicycle.title);
                     this.remButton();
                   }}>
                   <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
@@ -198,7 +198,7 @@ class BicyclePage extends React.Component {
                 <Button className={styles.icon}
                   onClick={event => {
                     event.preventDefault();
-                    updateQuantity(1, bicycle.title);
+                    // updateQuantity(1, bicycle.title);
                     this.addButton();
                   }}>
                   <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
