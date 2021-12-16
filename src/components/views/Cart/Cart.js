@@ -32,13 +32,7 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
   //   ],
   // };
   const [commentValue, setCommentValue] = useState('');
-  const updateTextField = (e) => {
-    const onebicycle = products.filter(bicycle => bicycle.id === e.currentTarget.id);
-    console.log(onebicycle);
-    if (onebicycle)
-      console.log(e.currentTarget);
-    setCommentValue(e.currentTarget.value);
-  };
+
   return (
     <div className={styles.root}>
       <Container className={styles.container} maxWidth='lg'>
@@ -57,7 +51,7 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
           <tbody>
             {products.map(product => {
               subtotal += product.price * product.quantity;
-              console.log(product);
+              // console.log(product);
               return (
                 <tr key={product.id}>
                   <td>
@@ -76,7 +70,9 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
                       variant="outlined"
                       value={commentValue}
                       // helperText="Min. 20 characters"
-                      onChange={updateTextField}
+                      onChange={(e) => {
+                        setCommentValue(e.currentTarget.value);
+                      }}
                     />
                   </td>
                   <td>
