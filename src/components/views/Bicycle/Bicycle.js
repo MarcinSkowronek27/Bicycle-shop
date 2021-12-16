@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button';
 
 import { connect } from 'react-redux';
 import { fetchOneFromAPI, getOneBicycle } from '../../../redux/bicyclesRedux';
-import { addProduct, updateQuantity } from '../../../redux/cartRedux';
+import { addProduct} from '../../../redux/cartRedux';
 
 import styles from './Bicycle.module.scss';
 
@@ -67,7 +67,7 @@ class BicyclePage extends React.Component {
 
   render() {
     // const { id, title, image, price, quantity, addToCart } = this.props;
-    const { addToCart, updateQuantity, bicycle } = this.props;
+    const { addToCart, bicycle } = this.props;
     // const id = this.state.id;
     // console.log(bicycle.moreImage.length);
     // fetchOneBicycle();
@@ -262,7 +262,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
   addToCart: cartPayload => dispatch(addProduct(cartPayload)),
-  updateQuantity: (quantity, id) => dispatch(updateQuantity(quantity, id)),
   fetchOneBicycle: () => dispatch(fetchOneFromAPI(props.match.params.id)),
 });
 
