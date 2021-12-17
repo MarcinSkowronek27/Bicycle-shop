@@ -1,8 +1,9 @@
+// require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
-require('dotenv').config();
+const dotenv = require('dotenv');
 
 const bicyclesRoutes = require('./routes/bicycles.routes');
 
@@ -29,11 +30,12 @@ app.use(express.static(path.join(__dirname, '../build')));
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
 });
-
+dotenv.config();
 /* MONGOOSE */
 // if (NODE_ENV === 'production')
-dbUri = `mongodb+srv://${process.env.USER_TEST}:${process.env.PASS_TEST}@cluster0.xxdw6.mongodb.net/bicycleShop?retryWrites=true&w=majority`;
+dbUri = `mongodb+srv://Admin-max:DB.m820og@cluster0.xxdw6.mongodb.net/bicycleDB?retryWrites=true&w=majority`;
 // else dbUri = 'mongodb://localhost:27017/bicycleShop';
+console.log('test', process.env.USER_TEST);
 try {
   mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 } catch (err) {
