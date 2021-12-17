@@ -12,6 +12,7 @@ const ADD_PRODUCT = createActionName('ADD_PRODUCT');
 const REMOVE_PRODUCT = createActionName('REMOVE_PRODUCT');
 const REMOVE_PRODUCTS = createActionName('REMOVE_PRODUCTS');
 const UPDATE_QUANTITY = createActionName('UPDATE_QUANTITY');
+const UPDATE_ITEM_COMMENT = createActionName('UPDATE_ITEM_COMMENT');
 
 /* action creators */
 export const addProduct = payload => ({ payload, type: ADD_PRODUCT });
@@ -22,6 +23,7 @@ export const updateQuantity = (quantity, id) => ({
   id,
   type: UPDATE_QUANTITY,
 });
+export const updateItemComment = (id, comment) => ({ id, comment, type: UPDATE_ITEM_COMMENT });
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
@@ -84,6 +86,21 @@ export default function reducer(statePart = [], action = {}) {
               };
             } else return { ...product };
           } else return { ...product };
+        }),
+      };
+    }
+    case UPDATE_ITEM_COMMENT: {
+      console.log(statePart);
+      return {
+        ...statePart,
+        products: statePart.products.map(product => {
+          // console.log('productid', product.title);
+          // console.log('action.id', action.id);
+          if (product.id === action.id) {
+            // console.log('działa tutaj');
+            return { ...product, comment: action.comment };
+          }
+          else return { ...product };
         }),
       };
     }

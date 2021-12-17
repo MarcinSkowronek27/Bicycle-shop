@@ -52,7 +52,7 @@ const Component = ({ className, products }) => {
                       // label="Disabled"
                       multiline
                       rows={6}
-                      defaultValue={product.comments}
+                      defaultValue={product.comment}
                     />
                   </td>
                   <td>

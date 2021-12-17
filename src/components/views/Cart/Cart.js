@@ -10,6 +10,7 @@ import {
   addProduct,
   removeProduct,
   updateQuantity,
+  updateItemComment,
 } from '../../../redux/cartRedux';
 
 import styles from './Cart.module.scss';
@@ -21,17 +22,16 @@ import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
 
-const Component = ({ products, removeProduct, updateQuantity }) => {
+const Component = ({ products, removeProduct, updateQuantity, id, updateComment, comment }) => {
 
   const delivery = 20;
   let subtotal = 0;
 
-  // const cart = {
-  //   products: [
-
-  //   ],
-  // };
   const [commentValue, setCommentValue] = useState('');
+
+  const handleInputComment = event => {
+    setCommentValue(event.target.value);
+  };
 
   return (
     <div className={styles.root}>
@@ -49,9 +49,9 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
             </tr>
           </thead>
           <tbody>
-            {products.map(product => {
+            {products.map((product, index) => {
               subtotal += product.price * product.quantity;
-              // console.log(product);
+              console.log(product.id);
               return (
                 <tr key={product.id}>
                   <td>
@@ -61,17 +61,18 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
                     </div>
                   </td>
                   <td>
-                    <TextField
+                    <TextField key={product.id}
                       id="text"
                       label="Customize your product"
                       name="text"
                       multiline
                       rows={6}
                       variant="outlined"
-                      value={commentValue}
+                      value={comment}
                       // helperText="Min. 20 characters"
-                      onChange={(e) => {
-                        setCommentValue(e.currentTarget.value);
+                      onChange={event => {
+                        handleInputComment(event);
+                        updateComment(product.id, event.target.value);
                       }}
                     />
                   </td>
@@ -143,9 +144,12 @@ const Component = ({ products, removeProduct, updateQuantity }) => {
 
 Component.propTypes = {
   products: PropTypes.array,
+  id: PropTypes.string,
   removeProduct: PropTypes.func,
   removeProducts: PropTypes.func,
   updateQuantity: PropTypes.func,
+  updateComment: PropTypes.func,
+  comment: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
@@ -159,6 +163,7 @@ const mapDispatchToProps = dispatch => {
     removeProduct: name => dispatch(removeProduct(name)),
     updateQuantity: (quantity, id) =>
       dispatch(updateQuantity(quantity, id)),
+    updateComment: (id, value) => dispatch(updateItemComment(id, value)),
   };
 };
 
