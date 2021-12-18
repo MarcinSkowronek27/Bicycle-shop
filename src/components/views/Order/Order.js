@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import clsx from 'clsx';
 
@@ -15,14 +15,27 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import { addOrderInAPI, getPersonalData, updateOrderForm } from '../../../redux/orderRedux';
 
-const Component = ({ className, personalData, cartProducts, cleanCartContent }) => {
+const Component = ({ className, personalData, cartProducts, cleanCartContent, updateOrderForm }) => {
 
   const [paymentValue, setPaymentValue] = useState(''); // eslint-disable-line
+  const [orderFormData, setOrderFormData] = useState('');
 
   const handleInputPayment = event => {
     console.log(event.target.value);
     setPaymentValue(event.target.value);
+  };
+
+  useEffect(() => {
+    updateOrderForm(orderFormData);
+  }, [orderFormData, updateOrderForm]);
+
+  const handleOrderFormData = event => {
+    setOrderFormData({
+      ...orderFormData,
+      [event.target.name]: event.target.value,
+    });
   };
 
   const order = {
@@ -35,7 +48,9 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent }) 
     if (!order.orderContent.length) {
       alert('There is nothing in your cart yet, go back to homepage.');
     } else {
-      cleanCartContent();
+      console.log('działa');
+      addOrderInAPI(order);
+      // cleanCartContent();
       // cleanOrderForm();
     }
   };
@@ -104,16 +119,16 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent }) 
           // onSubmit={submitForm}
           >
             <TextField id="email" name="email" label="Email*" variant="outlined"
-            // onChange={updateTextField}
+              onChange={handleOrderFormData}
             />
             <TextField id="phone" name="phone" label="Phone number*" variant="outlined"
-            //  onChange={updateNumberField}
+              onChange={handleOrderFormData}
             />
-            <TextField id="name" name="Name" label="Name*" variant="outlined"
-            // onChange={updateTextField}
+            <TextField id="name" name="name" label="Name*" variant="outlined"
+              onChange={handleOrderFormData}
             />
-            <TextField id="surname" name="Surname" label="Surname*" variant="outlined"
-            // onChange={updateTextField}
+            <TextField id="surname" name="surname" label="Surname*" variant="outlined"
+              onChange={handleOrderFormData}
             />
             <FormControl>
               <InputLabel id="paymentLabel">Payment</InputLabel>
@@ -130,11 +145,11 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent }) 
                 <MenuItem value={'MasterCard'}>MasterCard</MenuItem>
               </Select>
             </FormControl>
-            <TextField id="address" label="Address" variant="outlined"
-            // onChange={updateTextField}
+            <TextField id="address" label="Address" name="address" variant="outlined"
+              onChange={handleOrderFormData}
             />
-            <TextField id="city" label="City" variant="outlined"
-            // onChange={updateTextField}
+            <TextField id="city" label="City" name="city" variant="outlined"
+              onChange={handleOrderFormData}
             />
             <Button variant="contained" color="secondary" type="submit" className={clsx(className, styles.link)}
               onClick={handleAddOrder}>
@@ -153,15 +168,20 @@ Component.propTypes = {
   className: PropTypes.string,
   personalData: PropTypes.object,
   cleanCartContent: PropTypes.func,
+  addOrderInAPI: PropTypes.func,
+  updateOrderForm: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   cartProducts: getAllCart(state),
+  personalData: getPersonalData(state),
   subtotal: 0,
 });
 
 const mapDispatchToProps = dispatch => ({
   cleanCartContent: arg => dispatch(cleanCartContent(arg)),
+  addOrderInAPI: arg => dispatch(addOrderInAPI(arg)),
+  updateOrderForm: arg => dispatch(updateOrderForm(arg)),
 });
 
 const OrderContainer = connect(mapStateToProps, mapDispatchToProps)(Component);

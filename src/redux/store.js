@@ -1,15 +1,17 @@
-import {combineReducers, createStore, applyMiddleware} from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { initialState } from './initialState';
 import { reducer as bicyclesReducer } from './bicyclesRedux';
 import cartReducer from './cartRedux';
+import { reducer as orderReducer } from './orderRedux';
 
 // define reducers
 const reducers = {
   bicycles: bicyclesReducer,
   cart: cartReducer,
+  order: orderReducer,
 };
 
 // add blank reducers for initial state properties without reducers

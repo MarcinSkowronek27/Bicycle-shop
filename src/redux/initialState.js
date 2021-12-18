@@ -59,7 +59,7 @@ export const initialState = {
     oneBicycle: {},
   },
   cart: {
-    products: [
+    products: [/*
       {
         id: 3,
         title: 'Axel 34',
@@ -82,7 +82,7 @@ export const initialState = {
         quantity: 1,
         comment: '',
       },
-    ],
+    */],
   },
   order: {
     data: [],

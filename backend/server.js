@@ -6,6 +6,7 @@ require('dotenv').config();
 
 
 const bicyclesRoutes = require('./routes/bicycles.routes');
+const ordersRoutes = require('./routes/orders.routes');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 /* API ENDPOINTS */
+app.use('/api', ordersRoutes);
 app.use('/api', bicyclesRoutes);
 
 /* API ERROR PAGES */
@@ -53,4 +55,4 @@ app.listen(port, () => {
   console.log('Server is running on port: ' + port);
 });
 
-console.log('test', process.env.GITES);
+// console.log('test', process.env.GITES);

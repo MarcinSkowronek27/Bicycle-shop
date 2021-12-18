@@ -22,7 +22,7 @@ import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
 
-const Component = ({ products, removeProduct, updateQuantity, id, updateComment, comment }) => {
+const Component = ({ products, removeProduct, updateQuantity, updateComment, comment }) => {
 
   const delivery = 20;
   let subtotal = 0;
@@ -144,7 +144,6 @@ const Component = ({ products, removeProduct, updateQuantity, id, updateComment,
 
 Component.propTypes = {
   products: PropTypes.array,
-  id: PropTypes.string,
   removeProduct: PropTypes.func,
   removeProducts: PropTypes.func,
   updateQuantity: PropTypes.func,
