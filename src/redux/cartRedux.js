@@ -109,7 +109,7 @@ export default function reducer(statePart = [], action = {}) {
     case CLEAN_CART_CONTENT: {
       return {
         ...statePart,
-        items: [],
+        products: [],
       };
     }
     default:

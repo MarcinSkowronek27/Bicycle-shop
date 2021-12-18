@@ -5,7 +5,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getAllCart } from '../../../redux/cartRedux';
+import { getAllCart, cleanCartContent } from '../../../redux/cartRedux';
 
 import styles from './Order.module.scss';
 import Container from '@material-ui/core/Container';
@@ -16,13 +16,28 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-const Component = ({ className, products }) => {
+const Component = ({ className, personalData, cartProducts, cleanCartContent }) => {
 
   const [paymentValue, setPaymentValue] = useState(''); // eslint-disable-line
 
   const handleInputPayment = event => {
     console.log(event.target.value);
     setPaymentValue(event.target.value);
+  };
+
+  const order = {
+    orderContent: cartProducts,
+    personalData,
+  };
+
+  const handleAddOrder = e => {
+    e.preventDefault();
+    if (!order.orderContent.length) {
+      alert('There is nothing in your cart yet, go back to homepage.');
+    } else {
+      cleanCartContent();
+      // cleanOrderForm();
+    }
   };
 
   const delivery = 20;
@@ -42,7 +57,7 @@ const Component = ({ className, products }) => {
             </tr>
           </thead>
           <tbody>
-            {products.map(product => {
+            {cartProducts.map(product => {
               subtotal += product.price * product.quantity;
 
               return (
@@ -122,10 +137,7 @@ const Component = ({ className, products }) => {
             // onChange={updateTextField}
             />
             <Button variant="contained" color="secondary" type="submit" className={clsx(className, styles.link)}
-              onClick={event => {
-                event.preventDefault();
-                // return removeProducts();
-              }}>
+              onClick={handleAddOrder}>
               SEND ORDER
             </Button>
           </form>
@@ -137,20 +149,22 @@ const Component = ({ className, products }) => {
 };
 
 Component.propTypes = {
-  products: PropTypes.array,
+  cartProducts: PropTypes.array,
   className: PropTypes.string,
+  personalData: PropTypes.object,
+  cleanCartContent: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  products: getAllCart(state),
+  cartProducts: getAllCart(state),
   subtotal: 0,
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  cleanCartContent: arg => dispatch(cleanCartContent(arg)),
+});
 
-const OrderContainer = connect(mapStateToProps)(Component);
+const OrderContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   // Component as Order,
