@@ -61,13 +61,13 @@
       }
     }
 
-    .checkout, .cartSummary {
+    .checkout, .cartOrder {
     display: flex;
     justify-content: flex-end;
     padding: 15px;
     }
 
-    .cartSummary, h5 {
+    .cartOrder, h5 {
       text-transform: uppercase;
       color: #2a2a2a;
       font-weight: 500;

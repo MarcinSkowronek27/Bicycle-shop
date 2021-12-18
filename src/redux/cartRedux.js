@@ -12,7 +12,8 @@ const ADD_PRODUCT = createActionName('ADD_PRODUCT');
 const REMOVE_PRODUCT = createActionName('REMOVE_PRODUCT');
 const REMOVE_PRODUCTS = createActionName('REMOVE_PRODUCTS');
 const UPDATE_QUANTITY = createActionName('UPDATE_QUANTITY');
-const UPDATE_ITEM_COMMENT = createActionName('UPDATE_ITEM_COMMENT');
+const UPDATE_COMMENT = createActionName('UPDATE_COMMENT');
+const CLEAN_CART_CONTENT = createActionName('CLEAN_CART_CONTENT');
 
 /* action creators */
 export const addProduct = payload => ({ payload, type: ADD_PRODUCT });
@@ -23,7 +24,8 @@ export const updateQuantity = (quantity, id) => ({
   id,
   type: UPDATE_QUANTITY,
 });
-export const updateItemComment = (id, comment) => ({ id, comment, type: UPDATE_ITEM_COMMENT });
+export const updateItemComment = (id, comment) => ({ id, comment, type: UPDATE_COMMENT });
+export const cleanCartContent = payload => ({ payload, type: CLEAN_CART_CONTENT });
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
@@ -89,7 +91,7 @@ export default function reducer(statePart = [], action = {}) {
         }),
       };
     }
-    case UPDATE_ITEM_COMMENT: {
+    case UPDATE_COMMENT: {
       console.log(statePart);
       return {
         ...statePart,
@@ -102,6 +104,12 @@ export default function reducer(statePart = [], action = {}) {
           }
           else return { ...product };
         }),
+      };
+    }
+    case CLEAN_CART_CONTENT: {
+      return {
+        ...statePart,
+        items: [],
       };
     }
     default:

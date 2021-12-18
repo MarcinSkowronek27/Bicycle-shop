@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { getAllCart } from '../../../redux/cartRedux';
 
-import styles from './Summary.module.scss';
+import styles from './Order.module.scss';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -23,7 +23,7 @@ const Component = ({ className, products }) => {
   return (
     <div className={styles.root}>
       <Container className={styles.container} maxWidth='lg'>
-        <h4>SUMMARY</h4>
+        <h4>ORDER</h4>
         <table>
           <thead>
             <tr>
@@ -72,8 +72,8 @@ const Component = ({ className, products }) => {
             })}
           </tbody>
         </table>
-        <div className={styles.summary}>Delivery: {delivery}</div>
-        <div className={styles.summary}>
+        <div className={styles.order}>Delivery: {delivery}</div>
+        <div className={styles.order}>
           Total: {subtotal > 0 ? subtotal + delivery : 0}
         </div>
         <div className={styles.checkout}>
@@ -140,10 +140,10 @@ const mapStateToProps = state => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
 
-const SummaryContainer = connect(mapStateToProps)(Component);
+const OrderContainer = connect(mapStateToProps)(Component);
 
 export {
-  // Component as Summary,
-  SummaryContainer as Summary,
-  Component as SummaryComponent,
+  // Component as Order,
+  OrderContainer as Order,
+  Component as OrderComponent,
 };

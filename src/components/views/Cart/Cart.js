@@ -120,20 +120,20 @@ const Component = ({ products, removeProduct, updateQuantity, id, updateComment,
             })}
           </tbody>
         </table>
-        <div className={styles.cartSummary}>Subtotal: {subtotal}</div>
-        <div className={styles.cartSummary}>Delivery: {delivery}</div>
-        <div className={styles.cartSummary}>
+        <div className={styles.cartOrder}>Subtotal: {subtotal}</div>
+        <div className={styles.cartOrder}>Delivery: {delivery}</div>
+        <div className={styles.cartOrder}>
           Total: {subtotal > 0 ? subtotal + delivery : 0}
         </div>
         <div className={styles.checkout}>
-          <NavLink exact to={'/bicycles/summary'} activeClassName='active' className={styles.link}>
+          <NavLink exact to={'/bicycles/order'} activeClassName='active' className={styles.link}>
             <Button
             // onClick={event => {
             //   event.preventDefault();
             //   return removeProducts();
             // }}
             >
-              GO TO SUMMARY
+              GO TO ORDER
             </Button>
           </NavLink>
         </div>
