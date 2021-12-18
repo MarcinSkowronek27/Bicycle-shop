@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import clsx from 'clsx';
 
@@ -16,6 +17,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
 const Component = ({ className, products }) => {
+
+  const [paymentValue, setPaymentValue] = useState(''); // eslint-disable-line
+
+  const handleInputPayment = event => {
+    console.log(event.target.value);
+    setPaymentValue(event.target.value);
+  };
 
   const delivery = 20;
   let subtotal = 0;
@@ -60,7 +68,7 @@ const Component = ({ className, products }) => {
                       type='text'
                       id='quantity'
                       name='quantity'
-                      // defaultValue='1'
+                      readOnly
                       value={product.quantity}
                     />
                   </td>
@@ -98,8 +106,10 @@ const Component = ({ className, products }) => {
                 labelId="paymentLabelSelect"
                 id="payment"
                 name="payment"
-                value=''
-              // onChange={updateTextField}
+                value={paymentValue}
+                onChange={event => {
+                  handleInputPayment(event);
+                }}
               >
                 <MenuItem value={'Cash'}>Cash</MenuItem>
                 <MenuItem value={'MasterCard'}>MasterCard</MenuItem>
