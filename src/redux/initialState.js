@@ -84,4 +84,7 @@ export const initialState = {
       },
     ],
   },
+  order: {
+    data: [],
+  },
 };

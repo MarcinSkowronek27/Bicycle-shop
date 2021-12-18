@@ -1,9 +1,8 @@
-require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+require('dotenv').config();
 
 
 const bicyclesRoutes = require('./routes/bicycles.routes');
@@ -31,8 +30,7 @@ app.use(express.static(path.join(__dirname, '../build')));
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
 });
-dotenv.config();
-console.log('dupa', process.env.dbpass);
+
 /* MONGOOSE */
 // if (NODE_ENV === 'production')
 dbUri = `mongodb+srv://Admin-max:DB.m820og@cluster0.xxdw6.mongodb.net/bicycleDB?retryWrites=true&w=majority`;
@@ -54,3 +52,5 @@ const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log('Server is running on port: ' + port);
 });
+
+console.log('test', process.env.GITES);

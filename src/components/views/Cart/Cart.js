@@ -27,7 +27,7 @@ const Component = ({ products, removeProduct, updateQuantity, id, updateComment,
   const delivery = 20;
   let subtotal = 0;
 
-  const [commentValue, setCommentValue] = useState('');
+  const [commentValue, setCommentValue] = useState(''); // eslint-disable-line
 
   const handleInputComment = event => {
     setCommentValue(event.target.value);
