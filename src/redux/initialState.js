@@ -60,28 +60,6 @@ export const initialState = {
   },
   cart: {
     products: [
-      {
-        id: 3,
-        title: 'Axel 34',
-        description: 'Como esta noche bravo',
-        image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?cs=srgb&dl=pexels-pixabay-276517.jpg&fm=jpg',
-        promo: null,
-        price: 1700,
-        category: 'road bike',
-        quantity: 1,
-        comment: '',
-      },
-      {
-        id: 1,
-        title: 'Axeltret',
-        description: 'Como esta ngfdgdvo',
-        image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?cs=srgb&dl=pexels-pixabay-276517.jpg&fm=jpg',
-        promo: null,
-        price: 170,
-        category: 'road hgbike',
-        quantity: 1,
-        comment: '',
-      },
     ],
   },
   order: {

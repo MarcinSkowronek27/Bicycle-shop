@@ -17,10 +17,8 @@ router.get('/orders', async (req, res) => {
 router.post('/orders', async (req, res) => {
   console.log(req.body);
   try {
-    const { email, phone} = req.body;
-    // console.log('email',email);
-    // console.log('phone',phone);
-    const newOrder = new Order({ email, phone });
+    const { orderContent, personalData} = req.body;
+    const newOrder = new Order({ orderContent, personalData });
     await newOrder.save();
     if (!newOrder) res.status(404).json({ order: 'Not found' });
     else res.json(newOrder);
