@@ -3,7 +3,7 @@ import { API_URL } from '../config';
 
 
 /* selectors */
-export const getAllOrder = ({ order }) => order.data;
+// export const getAllOrder = ({ order }) => order.data;
 export const getPersonalData = ({ order }) => order.personalData;
 
 /* action name creator */
@@ -27,12 +27,23 @@ export const updateOrderForm = payload => ({ payload, type: UPDATE_ORDER_FORM })
 export const cleanOrderForm = payload => ({ payload, type: CLEAN_ORDER_FORM });
 
 /* thunk creators */
-export const addOrderInAPI = (order) => {
+// export const addOrderInAPI = (order) => {
 
-  const newOrder = { ...order };
+//   const newOrder = { ...order };
+//   return (dispatch, getState) => {
+//     Axios
+//       .post(`${API_URL}/orders`, newOrder)
+//       .then(res => {
+//         dispatch(addOrder(res.data));
+//       })
+//       .catch(err => {
+//         dispatch(fetchError(err.message || true));
+//       });
+//   };
+// };
+
+export const addOrderInAPI = newOrder => {
   return (dispatch, getState) => {
-    dispatch(fetchStarted());
-
     Axios
       .post(`${API_URL}/orders`, newOrder)
       .then(res => {
@@ -78,20 +89,18 @@ export const reducer = (statePart = [], action = {}) => {
     case ADD_ORDER: {
       return {
         ...statePart,
-        order: {
-          data: [...statePart.data, action.payload],
-        },
+        data: [...statePart.data, action.payload],
       };
     }
     case UPDATE_ORDER_FORM: {
       // console.log(action.payload.email);
-      // console.log(action.payload.phone);
+      console.log(action.payload);
       return {
         ...statePart,
         personalData: {
           email: action.payload.email,
           phone: action.payload.phone,
-          // name: action.payload.name,
+          name: action.payload.name,
           // surname: action.payload.surname,
           // payment: action.payload.payment,
           // address: action.payload.address,

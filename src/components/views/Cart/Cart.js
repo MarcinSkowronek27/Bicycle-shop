@@ -21,7 +21,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
-import { addOrder } from '../../../redux/orderRedux';
 
 const Component = ({ products, removeProduct, updateQuantity, updateComment, comment }) => {
 

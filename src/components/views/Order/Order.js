@@ -15,9 +15,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { addOrderInAPI, getPersonalData, updateOrderForm, addOrder } from '../../../redux/orderRedux';
+import { addOrderInAPI, getPersonalData, updateOrderForm } from '../../../redux/orderRedux';
 
-const Component = ({ className, personalData, cartProducts, cleanCartContent, updateOrderForm }) => {
+const Component = ({ className, personalData, cartProducts, cleanCartContent, addOrder, updateOrderForm }) => {
 
   const [paymentValue, setPaymentValue] = useState(''); // eslint-disable-line
   const [orderFormData, setOrderFormData] = useState('');
@@ -40,30 +40,30 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, up
 
   const order = {
     orderContent: cartProducts,
-    personalData: personalData,
+    personalData,
   };
-  // console.log('produkty z koszyka', order.orderContent);
+  // console.log('personalData', order.personalData);
 
   const handleAddOrder = e => {
     e.preventDefault();
-    if (!order.orderContent.length) {
-      alert('There is nothing in your cart yet, go back to homepage.');
-    } else {
-      // console.log('działa przycisk');
-      addOrder(order);
-      // addOrderInAPI(order);
-      // cleanCartContent();
-      // cleanOrderForm();
-    }
+    // if (!order.orderContent.length) {
+    // alert('There is nothing in your cart yet, go back to homepage.');
+    // } else {
+    // console.log('działa przycisk');
+    addOrder(order);
+    // addOrderInAPI(order);
+    // cleanCartContent();
+    // cleanOrderForm();
+    // }
   };
 
   const delivery = 20;
   let subtotal = 0;
 
   // const submitForm = (e) => {
-
+  //   console.log('działa submit');
   //   e.preventDefault();
-  //   addOrderInAPI(order);
+  //   addOrder(order);
   //   alert('Post added successfully!');
 
   // };
@@ -161,9 +161,10 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, up
             <TextField id="city" label="City" name="city" variant="outlined"
               onChange={handleOrderFormData}
             />
-            <Button variant="contained" color="secondary" type="submit" className={clsx(className, styles.link)}
+            <Button variant="contained" color="secondary"
+              // type="submit"
+              className={clsx(className, styles.link)}
               onClick={handleAddOrder}>
-              {/* onClick={addOrderInAPI(order)}> */}
               SEND ORDER
             </Button>
           </form>
@@ -181,6 +182,7 @@ Component.propTypes = {
   cleanCartContent: PropTypes.func,
   addOrderInAPI: PropTypes.func,
   updateOrderForm: PropTypes.func,
+  addOrder: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -190,10 +192,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  cleanCartContent: arg => dispatch(cleanCartContent(arg)),
-  addOrderInAPI: arg => dispatch(addOrderInAPI(arg)),
+  addOrder: arg => dispatch(addOrderInAPI(arg)),
   updateOrderForm: arg => dispatch(updateOrderForm(arg)),
-  addOrder: (order) => dispatch(addOrder(order)),
+  cleanCartContent: arg => dispatch(cleanCartContent(arg)),
 });
 
 const OrderContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
