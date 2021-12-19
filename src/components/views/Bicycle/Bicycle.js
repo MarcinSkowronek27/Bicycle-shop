@@ -100,10 +100,10 @@ class BicyclePage extends React.Component {
 
               <Grid item xs={12} md={6} lg={6} className={styles.wrapperRight}>
                 <div className={`row pb-4 ${styles.wrapperSmall}`}>
-                  <img src={bicycle.moreImage} alt='imgSecond' />
+                  <img src={bicycle.moreImage[1]} alt='imgSecond' />
                 </div>
                 <div className={`row ${styles.wrapperSmall}`}>
-                  <img src={bicycle.moreImage} alt='imgThird' />
+                  <img src={bicycle.moreImage[2]} alt='imgThird' />
                 </div>
               </Grid>
             </Grid>

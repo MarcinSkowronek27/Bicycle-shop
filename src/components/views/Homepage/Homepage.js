@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
 
 import clsx from 'clsx';
 
@@ -20,12 +21,22 @@ import { Link } from '@material-ui/core';
 
 const Component = ({ className, allBicycles, children, fetchPublishedBicycles }) => {
 
+  const history = useHistory();
+
+  const handleGoTo = (event, id) => {
+    // console.log('link', `bicycle/` + id);
+    history.push(`bicycle/` + id);
+  };
   fetchPublishedBicycles();
   return (
     <div className={clsx(className, styles.root)}>
       <div className={clsx(className, styles.bicyclesContainer)}>
         {allBicycles.map((bicycle, index) => (
-          <Card key={bicycle._id} className={clsx(className, styles.card)} component={Link} href={`bicycles/${bicycle._id}`}>
+          <Card key={bicycle._id} className={clsx(className, styles.card)} component={Link}
+            onClick={event => handleGoTo(event, bicycle._id)}
+            // href={`/bicycle/${bicycle._id}`}
+            // jeżeli tutaj POWYŻEJ dla href byłoby zapisane bicycle/${bicycle._id} bez slasha przed pierwszym bicycle, to strona by się przeładowywała. TIPS
+          >
             <div className={styles.photo}>
               {bicycle.image &&
                 <CardMedia
@@ -48,7 +59,7 @@ const Component = ({ className, allBicycles, children, fetchPublishedBicycles })
               <Divider />
               <div className={clsx(className, styles.details)}>
                 <Typography className={styles.price} component={'span'}>
-                  <div className={styles.oldPrice}>{bicycle.oldPrice ?  bicycle.oldPrice + 'PLN' : ''}</div>
+                  <div className={styles.oldPrice}>{bicycle.oldPrice ? bicycle.oldPrice + 'PLN' : ''}</div>
                   {bicycle.price && `Price: ${bicycle.price}PLN`}
                 </Typography>
                 <Typography className={styles.description} component={'span'}>

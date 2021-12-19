@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 
 // import clsx from 'clsx';
 
@@ -26,6 +27,12 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
 
   const delivery = 20;
   let subtotal = 0;
+
+  const history = useHistory();
+
+  const handleGoTo = event => {
+    history.push('/');
+  };
 
   const [commentValue, setCommentValue] = useState(''); // eslint-disable-line
 
@@ -126,6 +133,7 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
           Total: {subtotal > 0 ? subtotal + delivery : 0}
         </div>
         <div className={styles.checkout}>
+          <Button onClick={handleGoTo}></Button>
           <NavLink exact to={'/bicycles/order'} activeClassName='active' className={styles.link}>
             <Button
               // onClick={event => {

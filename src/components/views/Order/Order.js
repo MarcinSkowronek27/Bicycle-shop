@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import clsx from 'clsx';
 
@@ -15,12 +16,15 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { addOrderInAPI, getPersonalData, updateOrderForm } from '../../../redux/orderRedux';
+import Modal from 'react-bootstrap/Modal';
+import { addOrderInAPI, getPersonalData, updateOrderForm, cleanOrderForm } from '../../../redux/orderRedux';
 
-const Component = ({ className, personalData, cartProducts, cleanCartContent, addOrder, updateOrderForm }) => {
+const Component = ({ className, personalData, cartProducts, cleanCartContent, addOrder, updateOrderForm, cleanOrderForm }) => {
 
   const [paymentValue, setPaymentValue] = useState(''); // eslint-disable-line
   const [orderFormData, setOrderFormData] = useState('');
+  const [show, setShow] = useState(false);
+  const history  = useHistory();
 
   const handleInputPayment = event => {
     console.log(event.target.value);
@@ -44,21 +48,58 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, ad
   };
   // console.log('personalData', order.personalData);
 
+  const refresh = () => {
+    setTimeout(function () {
+      window.location.reload();
+    }, 200);
+  };
+
   const handleAddOrder = e => {
     e.preventDefault();
-    // if (!order.orderContent.length) {
-    // alert('There is nothing in your cart yet, go back to homepage.');
-    // } else {
-    // console.log('działa przycisk');
-    addOrder(order);
-    // addOrderInAPI(order);
-    // cleanCartContent();
-    // cleanOrderForm();
-    // }
+
+    if (!order.personalData.email ||
+      !order.personalData.phone ||
+      !order.personalData.name ||
+      !order.personalData.surname ||
+      !order.personalData.payment ||
+      !order.personalData.address ||
+      !order.personalData.city) {
+      alert('You can\'t leave required fields empty!');
+    } else if (order.personalData.email.length < 2) {
+      alert('Email can\'t be shorter than 2 characters');
+    } else if (order.personalData.phone.length < 2) {
+      alert('Phone can\'t be shorter than 2 characters');
+    } else if (order.personalData.name.length < 2) {
+      alert('Name can\'t be shorter than 2 characters');
+    } else if (order.personalData.surname.length < 2) {
+      alert('Surname can\'t be shorter than 2 characters');
+    } else if (order.personalData.address.length < 5) {
+      alert('Address nr can\'t be shorter than 5 numbers');
+    } else if (order.personalData.city.length < 5) {
+      alert('City nr can\'t be shorter than 5 numbers');
+    } else {
+      // if (!order.orderContent.length) {
+      // alert('There is nothing in your cart yet, go back to homepage.');
+      // } else {
+      // console.log('działa przycisk');
+      addOrder(order);
+      cleanCartContent();
+      cleanOrderForm();
+      setShow(true);
+      // window.location.reload();
+      // refresh();
+    }
   };
 
   const delivery = 20;
   let subtotal = 0;
+
+  const handleGoToHp = event => {
+    setShow(false);
+    history.push('/');
+  };
+
+  const handleClose = () => setShow(false);
 
   // const submitForm = (e) => {
   //   console.log('działa submit');
@@ -147,8 +188,10 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, ad
                 id="payment"
                 name="payment"
                 value={paymentValue}
+                // onChange={handleOrderFormData}
                 onChange={event => {
                   handleInputPayment(event);
+                  handleOrderFormData(event);
                 }}
               >
                 <MenuItem value={'Cash'}>Cash</MenuItem>
@@ -168,8 +211,18 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, ad
               SEND ORDER
             </Button>
           </form>
-
         </div>
+        <Modal show={show} onHide={handleClose} centered>
+          <Modal.Body>
+            <Modal.Title>Thank you for your order!</Modal.Title>
+            <Modal.Title>We will contact to you soon.</Modal.Title>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant='basic' onClick={handleGoToHp}>
+              Go to homepage
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
     </div >
   );
@@ -183,6 +236,7 @@ Component.propTypes = {
   addOrderInAPI: PropTypes.func,
   updateOrderForm: PropTypes.func,
   addOrder: PropTypes.func,
+  cleanOrderForm: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -195,6 +249,7 @@ const mapDispatchToProps = dispatch => ({
   addOrder: arg => dispatch(addOrderInAPI(arg)),
   updateOrderForm: arg => dispatch(updateOrderForm(arg)),
   cleanCartContent: arg => dispatch(cleanCartContent(arg)),
+  cleanOrderForm: arg => dispatch(cleanOrderForm(arg)),
 });
 
 const OrderContainer = connect(mapStateToProps, mapDispatchToProps)(Component);

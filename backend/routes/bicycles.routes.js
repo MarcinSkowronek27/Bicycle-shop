@@ -14,7 +14,7 @@ router.get('/bicycles', async (req, res) => {
   }
 });
 
-router.get('/bicycles/:id', async (req, res) => {
+router.get('/bicycle/:id', async (req, res) => {
   try {
     const result = await Bicycle.findById(req.params.id);
     if(!result) res.status(404).json({ bicycles: 'Not found' });

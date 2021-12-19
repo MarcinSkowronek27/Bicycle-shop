@@ -45,7 +45,7 @@ export const fetchOneFromAPI = (id) => {
     dispatch(fetchStarted);
 
     Axios
-      .get(`${API_URL}/bicycles/${id}`)
+      .get(`${API_URL}/bicycle/${id}`)
       .then(res => {
         dispatch(fetchOneBicycle(res.data));
       })

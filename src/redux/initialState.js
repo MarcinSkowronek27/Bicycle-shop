@@ -31,6 +31,7 @@ export const initialState = {
           'https://images.pexels.com/photos/10288966/pexels-photo-10288966.jpeg?cs=srgb&dl=pexels-tina-simakova-10288966.jpg&fm=jpg',
           'https://images.pexels.com/photos/1102775/pexels-photo-1102775.jpeg?cs=srgb&dl=pexels-bear-gingerbliss-1102775.jpg&fm=jpg',
           'https://images.pexels.com/photos/1548771/pexels-photo-1548771.jpeg?cs=srgb&dl=pexels-sebastian-voortman-1548771.jpg&fm=jpg',
+          'https://images.pexels.com/photos/5911701/pexels-photo-5911701.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=300'
         ],
       },
       {
@@ -56,7 +57,7 @@ export const initialState = {
       active: false,
       error: false,
     },
-    oneBicycle: {},
+    oneBicycle: {id: '', title: '', description: '', image: '', promo: '', price: '', category: '', quantity: '', moreImage: []},
   },
   cart: {
     products: [
