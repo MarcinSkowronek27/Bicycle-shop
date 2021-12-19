@@ -28,7 +28,7 @@ export const updateItemComment = (id, comment) => ({ id, comment, type: UPDATE_C
 export const cleanCartContent = payload => ({ payload, type: CLEAN_CART_CONTENT });
 
 /* reducer */
-export default function reducer(statePart = [], action = {}) {
+export const reducer = (statePart = [], action = {}) => {
   // let cart = {
   //   products: [
   //   ],
@@ -115,4 +115,4 @@ export default function reducer(statePart = [], action = {}) {
     default:
       return statePart;
   }
-}
+};

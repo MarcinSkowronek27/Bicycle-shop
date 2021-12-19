@@ -21,6 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
+import { addOrder } from '../../../redux/orderRedux';
 
 const Component = ({ products, removeProduct, updateQuantity, updateComment, comment }) => {
 
@@ -128,10 +129,10 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
         <div className={styles.checkout}>
           <NavLink exact to={'/bicycles/order'} activeClassName='active' className={styles.link}>
             <Button
-            // onClick={event => {
-            //   event.preventDefault();
-            //   return removeProducts();
-            // }}
+              // onClick={event => {
+              //   event.preventDefault();
+              //   addOrder();
+              // }}
             >
               GO TO ORDER
             </Button>

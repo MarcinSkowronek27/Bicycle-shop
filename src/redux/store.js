@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { initialState } from './initialState';
 import { reducer as bicyclesReducer } from './bicyclesRedux';
-import cartReducer from './cartRedux';
+import { reducer as cartReducer } from './cartRedux';
 import { reducer as orderReducer } from './orderRedux';
 
 // define reducers

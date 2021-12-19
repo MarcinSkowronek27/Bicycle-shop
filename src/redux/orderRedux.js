@@ -3,7 +3,8 @@ import { API_URL } from '../config';
 
 
 /* selectors */
-export const getPersonalData = ({order}) => order.personalData;
+export const getAllOrder = ({ order }) => order.data;
+export const getPersonalData = ({ order }) => order.personalData;
 
 /* action name creator */
 const reducerName = 'order';
@@ -26,9 +27,12 @@ export const updateOrderForm = payload => ({ payload, type: UPDATE_ORDER_FORM })
 export const cleanOrderForm = payload => ({ payload, type: CLEAN_ORDER_FORM });
 
 /* thunk creators */
-export const addOrderInAPI = newOrder => {
+export const addOrderInAPI = (order) => {
+
+  const newOrder = { ...order };
   return (dispatch, getState) => {
-    console.log('działa thunk');
+    dispatch(fetchStarted());
+
     Axios
       .post(`${API_URL}/orders`, newOrder)
       .then(res => {
@@ -74,20 +78,24 @@ export const reducer = (statePart = [], action = {}) => {
     case ADD_ORDER: {
       return {
         ...statePart,
-        data: [...statePart.data, action.payload],
+        order: {
+          data: [...statePart.data, action.payload],
+        },
       };
     }
     case UPDATE_ORDER_FORM: {
+      // console.log(action.payload.email);
+      // console.log(action.payload.phone);
       return {
         ...statePart,
         personalData: {
           email: action.payload.email,
           phone: action.payload.phone,
-          name: action.payload.name,
-          surname: action.payload.surname,
-          payment: action.payload.payment,
-          address: action.payload.address,
-          city: action.payload.city,
+          // name: action.payload.name,
+          // surname: action.payload.surname,
+          // payment: action.payload.payment,
+          // address: action.payload.address,
+          // city: action.payload.city,
         },
       };
     }

@@ -6,22 +6,23 @@ const Order = require('../models/order.model');
 router.get('/orders', async (req, res) => {
   try {
     const result = await Order.find();
-    if(!result) res.status(404).json({ orders: 'Not found' });
+    if (!result) res.status(404).json({ orders: 'Not found' });
     else res.json(result);
   }
-  catch(err) {
+  catch (err) {
     res.status(500).json(err);
   }
 });
 
 router.post('/orders', async (req, res) => {
   try {
-    const { orderContent, personalData } = req.body;
-    const newPost = new Order({ orderContent, personalData });
-    await newPost.save();
-    //res.json({ message: 'OK' });
+    const { email, phone} = req.body;
+    const newOrder = new Order({ email, phone });
+    await newOrder.save();
+    if (!newOrder) res.status(404).json({ order: 'Not found' });
+    else res.json(newOrder);
   }
-  catch(err) {
+  catch (err) {
     console.log(err);
     res.status(500).json(err);
   }

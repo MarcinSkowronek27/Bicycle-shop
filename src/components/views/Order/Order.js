@@ -15,7 +15,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { addOrderInAPI, getPersonalData, updateOrderForm } from '../../../redux/orderRedux';
+import { addOrderInAPI, getPersonalData, updateOrderForm, addOrder } from '../../../redux/orderRedux';
 
 const Component = ({ className, personalData, cartProducts, cleanCartContent, updateOrderForm }) => {
 
@@ -40,16 +40,18 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, up
 
   const order = {
     orderContent: cartProducts,
-    personalData,
+    personalData: personalData,
   };
+  // console.log('produkty z koszyka', order.orderContent);
 
   const handleAddOrder = e => {
     e.preventDefault();
     if (!order.orderContent.length) {
       alert('There is nothing in your cart yet, go back to homepage.');
     } else {
-      console.log('działa');
-      addOrderInAPI(order);
+      // console.log('działa przycisk');
+      addOrder(order);
+      // addOrderInAPI(order);
       // cleanCartContent();
       // cleanOrderForm();
     }
@@ -57,6 +59,14 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, up
 
   const delivery = 20;
   let subtotal = 0;
+
+  // const submitForm = (e) => {
+
+  //   e.preventDefault();
+  //   addOrderInAPI(order);
+  //   alert('Post added successfully!');
+
+  // };
 
   return (
     <div className={styles.root}>
@@ -115,7 +125,7 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, up
           Total: {subtotal > 0 ? subtotal + delivery : 0}
         </div>
         <div className={styles.checkout}>
-          <form className={clsx(className, styles.form)} noValidate autoComplete="off" action="/posts/add" method="POST" encType="multipart/form-data"
+          <form className={clsx(className, styles.form)} noValidate autoComplete="off" action="/orders" method="POST" encType="multipart/form-data"
           // onSubmit={submitForm}
           >
             <TextField id="email" name="email" label="Email*" variant="outlined"
@@ -153,6 +163,7 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, up
             />
             <Button variant="contained" color="secondary" type="submit" className={clsx(className, styles.link)}
               onClick={handleAddOrder}>
+              {/* onClick={addOrderInAPI(order)}> */}
               SEND ORDER
             </Button>
           </form>
@@ -182,6 +193,7 @@ const mapDispatchToProps = dispatch => ({
   cleanCartContent: arg => dispatch(cleanCartContent(arg)),
   addOrderInAPI: arg => dispatch(addOrderInAPI(arg)),
   updateOrderForm: arg => dispatch(updateOrderForm(arg)),
+  addOrder: (order) => dispatch(addOrder(order)),
 });
 
 const OrderContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
