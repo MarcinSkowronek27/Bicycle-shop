@@ -101,10 +101,10 @@ export const reducer = (statePart = [], action = {}) => {
           email: action.payload.email,
           phone: action.payload.phone,
           name: action.payload.name,
-          // surname: action.payload.surname,
-          // payment: action.payload.payment,
-          // address: action.payload.address,
-          // city: action.payload.city,
+          surname: action.payload.surname,
+          payment: action.payload.payment,
+          address: action.payload.address,
+          city: action.payload.city,
         },
       };
     }
