@@ -10,21 +10,21 @@ $color-main_font: #b33939;
     @content;
   }
 }
-
+// OK
 @mixin medium {
-  @media (max-width: 991px) {
+  @media (max-width: 821px) {
     @content;
   }
 }
-
+// OK
 @mixin small {
-  @media (max-width: 767px) {
+  @media (max-width: 540px) {
     @content;
   }
 }
 
 @mixin extra-small {
-  @media (max-width: 575px) {
+  @media (max-width: 377px) {
     @content;
   }
 }

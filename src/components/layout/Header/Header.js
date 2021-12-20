@@ -36,7 +36,7 @@ HideOnScroll.propTypes = {
   window: PropTypes.func,
 };
 
-const Component = ({className, props, cartCount}) => {
+const Component = ({ className, props, cartCount }) => {
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -44,7 +44,8 @@ const Component = ({className, props, cartCount}) => {
         <AppBar className={styles.app_bar}>
           <Toolbar>
             <Typography variant="h6" component="div" className={styles.typography} >
-              <div className='container'>
+              <div className={styles.numberContainer}>
+                {/* <div className='container'> */}
                 <div className='row align-items-center'>
                   <div className={`col text-left ${styles.phoneNumber}`}>
                     <p>
@@ -53,20 +54,23 @@ const Component = ({className, props, cartCount}) => {
                     </p>
                   </div>
                 </div>
+                {/* </div> */}
+                <NavLink exact to={'/'} activeClassName='active'>
+                  <img src={chain} width='100' height='100' alt='chain_icon' />
+                </NavLink>
               </div>
-              <NavLink exact to={'/'} activeClassName='active'>
-                <img src={chain} width='100' height='100' alt='chain_icon' />
-              </NavLink>
-              <h1 className={styles.font_style}>Bicycles shop</h1>
-              {/* <div className={`col text-right ${styles.cart}`}> */}
-              <NavLink exact to={'/bicycles/cart'} activeClassName='active' className={styles.cart}>
-                <button className={styles.cartBox}>
-                  <div className={styles.cartIcon}>
-                    <FontAwesomeIcon className={styles.icon} icon={faShoppingBasket} />
-                  </div>
-                  <div className={styles.cartCounter}>{cartCount}</div>
-                </button>
-              </NavLink>
+              <div className={styles.companyContainer}>
+                <h1 className={styles.font_style}>Bicycles shop</h1>
+                {/* <div className={`col text-right ${styles.cart}`}> */}
+                <NavLink exact to={'/bicycles/cart'} activeClassName='active' className={styles.cart}>
+                  <button className={styles.cartBox}>
+                    <div className={styles.cartIcon}>
+                      <FontAwesomeIcon className={styles.icon} icon={faShoppingBasket} />
+                    </div>
+                    <div className={styles.cartCounter}>{cartCount}</div>
+                  </button>
+                </NavLink>
+              </div>
               {/* </div> */}
             </Typography>
           </Toolbar>
