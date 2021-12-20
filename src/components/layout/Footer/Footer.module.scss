@@ -14,7 +14,7 @@
     a {
       color: $color-main_font;
       opacity: 0.9;
-      font-size: 18px;
+      font-size: 23px;
       padding: 8px 16px 0;
 
       @include extra-small {
@@ -27,7 +27,7 @@
     }
   }
   .paragraph {
-    font-weight: 400;
+    font-weight: 600;
     color: $color-main_font;
 
     p {

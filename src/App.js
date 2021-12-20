@@ -6,6 +6,7 @@ import { createTheme, StylesProvider, ThemeProvider } from '@material-ui/core/st
 import { CssBaseline } from '@material-ui/core';
 
 import { store } from './redux/store';
+import './styles/global.scss';
 
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { Homepage } from './components/views/Homepage/Homepage';
