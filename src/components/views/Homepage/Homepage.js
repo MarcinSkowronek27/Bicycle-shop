@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 
 import clsx from 'clsx';
 
@@ -17,25 +17,28 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import { Typography } from '@material-ui/core';
-import { Link } from '@material-ui/core';
+// import { Link } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 
 const Component = ({ className, allBicycles, children, fetchPublishedBicycles }) => {
 
-  const history = useHistory();
+  // const history = useHistory();
 
-  const handleGoTo = (event, id) => {
-    // console.log('link', `bicycle/` + id);
-    history.push(`bicycle/` + id);
-  };
+  // const handleGoTo = (event, id) => {
+  // console.log('link', `bicycle/` + id);
+  //   history.push(`bicycle/` + id);
+  // };
   fetchPublishedBicycles();
   return (
     <div className={clsx(className, styles.root)}>
       <div className={clsx(className, styles.bicyclesContainer)}>
         {allBicycles.map((bicycle, index) => (
-          <Card key={bicycle._id} className={clsx(className, styles.card)} component={Link}
-            onClick={event => handleGoTo(event, bicycle._id)}
-            // href={`/bicycle/${bicycle._id}`}
-            // jeżeli tutaj POWYŻEJ dla href byłoby zapisane bicycle/${bicycle._id} bez slasha przed pierwszym bicycle, to strona by się przeładowywała. TIPS
+          <Card key={bicycle._id} className={clsx(className, styles.card)} component={NavLink}
+            // onClick={event => handleGoTo(event, bicycle._id)}
+            exact to={`/bicycle/${bicycle._id}`}
+          // tutaj powyżej był taki kod href={`/bicycle/${bicycle._id}`} i on nie działał prawidłowo, jeżeli chodzi o "pamięć" koszyka. jeżeli używam komponentu NavLink muszę mieć parametr 'exact to' wtedy klikając na link strona nie będzie się przeładowywać TIPS
+          // jeżeli tutaj POWYŻEJ dla href byłoby zapisane bicycle/${bicycle._id} bez slasha przed pierwszym bicycle, to strona by się przeładowywała. TIPS
+          // żeby strona się nie przeładowywała po kliknięciu na inną podstronę, wystarczy użyć hooka useHistory() i użyć np. w formie funkcji handleGoTo TIPS
           >
             <div className={styles.photo}>
               {bicycle.image &&

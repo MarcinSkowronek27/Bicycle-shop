@@ -58,7 +58,7 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
           <tbody>
             {products.map((product, index) => {
               subtotal += product.price * product.quantity;
-              console.log(product.id);
+              // console.log(product.id);
               return (
                 <tr key={product.id}>
                   <td>
