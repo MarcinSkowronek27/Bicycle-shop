@@ -214,6 +214,17 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, ad
             </Button>
           </form>
         </div>
+        {/* <Modal show={show} onHide={handleClose} centered>
+          <Modal.Body>
+            <Modal.Title>Thank you for your order!</Modal.Title>
+            <Modal.Title>We will contact to you soon.</Modal.Title>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant='basic' onClick={handleGoToHp}>
+              Go to homepage
+            </Button>
+          </Modal.Footer>
+        </Modal> */}
       </Container>
     </div >
   );
