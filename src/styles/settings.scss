@@ -16,9 +16,16 @@ $color-main_font: #b33939;
     @content;
   }
 }
+
+@mixin medium-middle{
+  @media (max-width: 611px) {
+    @content;
+  }
+}
 // OK
 @mixin small {
-  @media (max-width: 540px) {
+  @media (max-width: 560px) {
+    // was 540px
     @content;
   }
 }

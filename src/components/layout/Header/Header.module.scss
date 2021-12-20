@@ -18,6 +18,7 @@
         height: 50px;
       }
     }
+
     .typography {
       display: flex;
       flex-direction: row;
@@ -62,6 +63,14 @@
           // border: solid red;
         }
       }
+
+      @include medium-middle {
+        .font_style {
+          font-size: 35px;
+          margin: 0;
+          // border: solid red;
+        }
+      }
       @include extra-small {
         .font_style {
           font-size: 30px;
@@ -76,6 +85,12 @@
       align-items: center;
       flex-direction: row;
       // border: solid red;
+
+      @include medium {
+        img {
+          margin-left: 2vw;
+        }
+      }
       .phoneNumber {
         p {
           margin: 0;
