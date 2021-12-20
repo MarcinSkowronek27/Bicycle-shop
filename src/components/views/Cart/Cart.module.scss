@@ -1,4 +1,4 @@
-@import '../../../styles/settings.scss';
+@import "../../../styles/settings.scss";
 
 .root {
   padding: 5rem 0;
@@ -11,11 +11,12 @@
     margin: 0 auto;
     width: 100%;
 
-    table{
+    table {
       width: 100%;
       margin-bottom: 20px;
 
-      thead, tbody{
+      thead,
+      tbody {
         font-size: 16px;
         color: $color-main_font;
         font-weight: 500;
@@ -26,12 +27,14 @@
         border-bottom: 1px solid grey;
       }
 
-      th, tr > td:not(:first-child){
+      th,
+      tr > td:not(:first-child) {
         text-align: center;
       }
 
       thead {
-        th,td{
+        th,
+        td {
           padding: 10px;
         }
       }
@@ -43,10 +46,10 @@
         }
 
         img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        padding-top: 5px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          padding-top: 5px;
         }
 
         input {
@@ -61,22 +64,28 @@
       }
     }
 
-    .checkout, .cartOrder {
-    display: flex;
-    justify-content: flex-end;
-    padding: 15px;
+    .checkout,
+    .cartOrder {
+      display: flex;
+      justify-content: flex-end;
+      padding: 15px;
     }
 
-    .cartOrder, h5 {
+    .cartOrder,
+    h5 {
       text-transform: uppercase;
       color: #2a2a2a;
       font-weight: 500;
       letter-spacing: 1px;
     }
 
-    .checkout .link {
-      text-decoration: none;
-
+    .checkout {
+      .link {
+        text-decoration: none;
+      }
+      .linkHome {
+        margin-right: 20px;
+      }
     }
 
     .checkout button {
@@ -90,8 +99,8 @@
     }
 
     h5 {
-    margin-bottom: 50px;
-    padding-left: 10px;
+      margin-bottom: 50px;
+      padding-left: 10px;
     }
   }
 }

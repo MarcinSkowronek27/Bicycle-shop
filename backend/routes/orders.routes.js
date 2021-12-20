@@ -15,7 +15,7 @@ router.get('/orders', async (req, res) => {
 });
 
 router.post('/orders', async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   try {
     const { orderContent, personalData} = req.body;
     const newOrder = new Order({ orderContent, personalData });
