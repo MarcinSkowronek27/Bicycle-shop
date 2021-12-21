@@ -1,0 +1,44 @@
+[debug] [2021-12-21T22:39:17.012Z] ----------------------------------------------------------------------
+[debug] [2021-12-21T22:39:17.014Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\CP24\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-12-21T22:39:17.015Z] CLI Version:   10.0.1
+[debug] [2021-12-21T22:39:17.015Z] Platform:      win32
+[debug] [2021-12-21T22:39:17.015Z] Node Version:  v14.16.0
+[debug] [2021-12-21T22:39:17.016Z] Time:          Tue Dec 21 2021 23:39:17 GMT+0100 (czas środkowoeuropejski standardowy)
+[debug] [2021-12-21T22:39:17.017Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-12-21T22:39:17.104Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-12-21T22:39:17.104Z] > authorizing via signed-in user (jakubgarlik@gmail.com)
+[debug] [2021-12-21T22:39:17.105Z] [iam] checking project bicycle-shop-bc09b for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-12-21T22:39:17.108Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-12-21T22:39:17.109Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-12-21T22:39:17.276Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 21 Dec 2021 22:39:18 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-12-21T22:39:17.294Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/bicycle-shop-bc09b:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-12-21T22:39:18.084Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 21 Dec 2021 22:39:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=683","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-12-21T22:39:18.086Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/bicycle-shop-bc09b/serviceAccounts/bicycle-shop-bc09b@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-12-21T22:39:18.808Z] <<< HTTP RESPONSE 404 {"vary":"X-Origin, Referer, Origin,Accept-Encoding","content-type":"application/json; charset=UTF-8","date":"Tue, 21 Dec 2021 22:39:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-12-21T22:39:18.808Z] <<< HTTP RESPONSE BODY {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2021-12-21T22:39:18.810Z] [functions] service account IAM check errored, deploy may fail: HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404,"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"headers":{"vary":"X-Origin, Referer, Origin,Accept-Encoding","content-type":"application/json; charset=UTF-8","date":"Tue, 21 Dec 2021 22:39:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"},"request":{"uri":{"protocol":"https:","slashes":true,"auth":null,"host":"iam.googleapis.com","port":443,"hostname":"iam.googleapis.com","hash":null,"search":null,"query":null,"pathname":"/v1/projects/bicycle-shop-bc09b/serviceAccounts/bicycle-shop-bc09b@appspot.gserviceaccount.com:testIamPermissions","path":"/v1/projects/bicycle-shop-bc09b/serviceAccounts/bicycle-shop-bc09b@appspot.gserviceaccount.com:testIamPermissions","href":"https://iam.googleapis.com/v1/projects/bicycle-shop-bc09b/serviceAccounts/bicycle-shop-bc09b@appspot.gserviceaccount.com:testIamPermissions"},"method":"POST"}}},"exit":1,"message":"HTTP Error: 404, Unknown service account","status":404}
+[debug] [2021-12-21T22:39:18.813Z] > refreshing access token with scopes: []
+[debug] [2021-12-21T22:39:18.813Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-12-21T22:39:18.914Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 21 Dec 2021 22:39:19 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-12-21T22:39:18.942Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bicycle-shop-bc09b [none]
+[debug] [2021-12-21T22:39:19.239Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bicycle-shop-bc09b 200
+[debug] [2021-12-21T22:39:19.239Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bicycle-shop-bc09b {"projectId":"bicycle-shop-bc09b","projectNumber":"614158867826","displayName":"Bicycle Shop","name":"projects/bicycle-shop-bc09b","resources":{"hostingSite":"bicycle-shop-bc09b"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'bicycle-shop-bc09b'...
+[info] 
+[info] i  deploying firestore, functions, hosting 
+[debug] [2021-12-21T22:39:19.361Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at validateString (internal/validators.js:124:11)
+    at Object.join (path.js:375:7)
+    at Config.path (C:\Users\CP24\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:115:45)
+    at getChildEnvironment (C:\Users\CP24\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\lifecycleHooks.js:50:49)
+    at runTargetCommands (C:\Users\CP24\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\lifecycleHooks.js:71:14)
+    at C:\Users\CP24\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\lifecycleHooks.js:122:24
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[error] 
+[error] Error: An unexpected error has occurred.
