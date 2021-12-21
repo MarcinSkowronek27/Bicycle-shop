@@ -12,20 +12,23 @@
     width: 100%;
 
     .productSection {
-      border: solid green;
+      // border: solid green;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      justify-content: space-between;
     }
 
     .productBox,
     .commentsBox,
-    .quantityBox {
+    .quantityBox,
+    .priceBox,
+    .totalBox,
+    .removeBox {
       display: flex;
       flex-direction: column;
       text-align: center;
       // border: solid red;
-      width: 250px;
       .productTitle {
         font-size: 16px;
         color: $color-main_font;
@@ -37,6 +40,7 @@
         color: $color-main_font;
         margin: 20px;
         font-size: 16px;
+        padding: 0;
       }
 
       input {
@@ -50,11 +54,34 @@
       }
     }
 
+    .productBox {
+      width: 230px;
+    }
+
     .commentsBox {
       margin: 0 15px;
       // border: solid red;
     }
-    .quantityButton {
+    .quantityBox,
+    .priceBox,
+    .totalBox,
+    .removeBox {
+      width: 127px;
+      div {
+        color: $color-main_font;
+        margin: 20px;
+        font-size: 16px;
+        padding: 0;
+      }
+    }
+
+    .quantityBox {
+      margin: 0 25px;
+    }
+    .quantityButton,
+    .priceBox > div,
+    .totalBox > div,
+    .removeBox button {
       display: flex;
       text-align: center;
       align-items: center;
@@ -72,59 +99,6 @@
       height: 100%;
       object-fit: cover;
       padding-top: 5px;
-    }
-    // u góry jest ok
-    table {
-      width: 100%;
-      margin-bottom: 20px;
-
-      thead,
-      tbody {
-        font-size: 16px;
-        color: $color-main_font;
-        font-weight: 500;
-        letter-spacing: 1px;
-      }
-
-      tr {
-        border-bottom: 1px solid grey;
-      }
-
-      th,
-      tr > td:not(:first-child) {
-        text-align: center;
-      }
-
-      thead {
-        th,
-        td {
-          padding: 10px;
-        }
-      }
-
-      tbody {
-        .photo {
-          height: 200px;
-          width: 90%;
-        }
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          padding-top: 5px;
-        }
-
-        input {
-          display: inline-block;
-          padding: 5px 10px;
-          border: 1px solid #2a2a2a;
-          color: #2a2a2a;
-          line-height: 22px;
-          width: 35px;
-          text-align: center;
-        }
-      }
     }
 
     .checkout,

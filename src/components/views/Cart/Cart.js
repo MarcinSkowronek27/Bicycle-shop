@@ -101,54 +101,28 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
                   </Button>
                 </div>
               </div>
+              <div className={styles.priceBox}>
+                <h5>Price</h5>
+                <div>{product.price}</div>
+              </div>
+              <div className={styles.totalBox}>
+                <h5>Total</h5>
+                <div>{product.price * product.quantity}</div>
+              </div>
+              <div className={styles.removeBox}>
+                <h5>Remove</h5>
+                <Button
+                  onClick={event => {
+                    event.preventDefault();
+                    return removeProduct(product.title);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faTrashAlt}>Remove</FontAwesomeIcon>
+                </Button>
+              </div>
             </section>
           );
         })}
-        {/* <table>
-                  <td>
-                    <Button
-                      onClick={event => {
-                        event.preventDefault();
-                        updateQuantity(-1, product.title);
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
-                    </Button>
-                    <input
-                      type='text'
-                      id='quantity'
-                      name='quantity'
-                      // defaultValue='1'
-                      value={product.quantity}
-                    />
-                    <Button
-                      onClick={event => {
-                        event.preventDefault();
-                        updateQuantity(1, product.title);
-                        // addToCart();
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
-                    </Button>
-                  </td>
-                  <td>{product.price}</td>
-                  <td>{product.price * product.quantity}</td>
-                  <td>
-                    <Button
-                      onClick={event => {
-                        event.preventDefault();
-                        // console.log(product.name);
-                        return removeProduct(product.title);
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTrashAlt}>Remove</FontAwesomeIcon>
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table> */}
         <div className={styles.cartOrder}>Subtotal: {subtotal}</div>
         <div className={styles.cartOrder}>Delivery: {delivery}</div>
         <div className={styles.cartOrder}>
