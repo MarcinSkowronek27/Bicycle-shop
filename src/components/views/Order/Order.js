@@ -16,6 +16,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import Divider from '@material-ui/core/Divider';
 // import Modal from 'react-bootstrap/Modal';
 import { addOrderInAPI, getPersonalData, updateOrderForm, cleanOrderForm } from '../../../redux/orderRedux';
 
@@ -115,54 +116,48 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, ad
     <div className={styles.root}>
       <Container className={styles.container} maxWidth='lg'>
         <h4>ORDER</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Comments</th>
-              <th>Quantity</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartProducts.map(product => {
-              subtotal += product.price * product.quantity;
 
-              return (
-                <tr key={product.id}>
-                  <td className={styles.tdPhoto}>
-                    <div>{product.title}</div>
-                    <div className={styles.photo}>
-                      <img src={product.image} alt={product.title} />
-                    </div>
-                  </td>
-                  <td>
-                    <TextField
-                      disabled
-                      id="outlined-disabled"
-                      // label="Disabled"
-                      multiline
-                      rows={6}
-                      defaultValue={product.comment}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type='text'
-                      id='quantity'
-                      name='quantity'
-                      readOnly
-                      value={product.quantity}
-                    />
-                  </td>
-                  <td>{product.price}</td>
-                  <td>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {cartProducts.map(product => {
+          subtotal += product.price * product.quantity;
+
+          return (
+            <section key={product.id} className={styles.productSection}>
+              <div className={styles.productBox}>
+                <h5>Product</h5>
+                <div className={styles.productTitle}>{product.title}</div>
+                <div className={styles.photo}>
+                  <img src={product.image} alt={product.title} />
+                </div>
+              </div>
+              <div className={styles.commentsBox}>
+                <h5>Comments</h5>
+                <TextField
+                  disabled
+                  id="outlined-disabled"
+                  // label="Disabled"
+                  multiline
+                  rows={6}
+                  defaultValue={product.comment}
+                />
+              </div>
+              <div className={styles.quantityBox}>
+                <h5>Quantity</h5>
+                <input
+                  type='text'
+                  id='quantity'
+                  name='quantity'
+                  readOnly
+                  value={product.quantity}
+                />
+              </div>
+              <div className={styles.priceBox}>
+                <h5>Price</h5>
+                <div>{product.price}</div>
+              </div>
+              <Divider variant="middle" className={styles.dividerSection} />
+            </section>
+          );
+        })}
         <div className={styles.order}>Delivery: {delivery}</div>
         <div className={styles.order}>
           Total: {subtotal > 0 ? subtotal + delivery : 0}

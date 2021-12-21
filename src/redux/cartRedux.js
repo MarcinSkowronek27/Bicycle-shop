@@ -43,7 +43,6 @@ export const reducer = (statePart = [], action = {}) => {
         return {
           ...statePart,
           products: statePart.products.map(product => {
-            // console.log(initialState.cart.products);
             // initialState.cart.products.push(product);
             if (product.id === id) return { ...product, quantity: product.quantity + 1 };
             return { ...product };
@@ -74,8 +73,8 @@ export const reducer = (statePart = [], action = {}) => {
       return {
         ...statePart,
         products: statePart.products.map(product => {
-          // console.log(product);
-          // console.log(action.quantity);
+          console.log(product);
+          console.log(action.quantity);
           // console.log(statePart);
           if (product.title === action.id) {
             if (

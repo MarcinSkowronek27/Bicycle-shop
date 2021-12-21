@@ -61,22 +61,22 @@ export const initialState = {
   },
   cart: {
     products: [
-      {
-        id: 1,
-        title: 'Torpedo 230',
-        description: 'Lorem ipsum dolom mites',
-        image: 'https://images.pexels.com/photos/1149601/pexels-photo-1149601.jpeg?cs=srgb&dl=pexels-leandro-boogalu-1149601.jpg&fm=jpg',
-        promo: 'sale',
-        price: 2300,
-        oldPrice: 1800,
-        category: 'road bike',
-        quantity: 1,
-        moreImage: [
-          'https://images.pexels.com/photos/5465247/pexels-photo-5465247.jpeg?cs=srgb&dl=pexels-cottonbro-5465247.jpg&fm=jpg',
-          'https://images.pexels.com/photos/5465249/pexels-photo-5465249.jpeg?cs=srgb&dl=pexels-cottonbro-5465249.jpg&fm=jpg',
-          'https://images.pexels.com/photos/5465238/pexels-photo-5465238.jpeg?cs=srgb&dl=pexels-cottonbro-5465238.jpg&fm=jpg',
-        ],
-      },
+      // {
+      //   id: 1,
+      //   title: 'Torpedo 230',
+      //   description: 'Lorem ipsum dolom mites',
+      //   image: 'https://images.pexels.com/photos/1149601/pexels-photo-1149601.jpeg?cs=srgb&dl=pexels-leandro-boogalu-1149601.jpg&fm=jpg',
+      //   promo: 'sale',
+      //   price: 2300,
+      //   oldPrice: 1800,
+      //   category: 'road bike',
+      //   quantity: 1,
+      //   moreImage: [
+      //     'https://images.pexels.com/photos/5465247/pexels-photo-5465247.jpeg?cs=srgb&dl=pexels-cottonbro-5465247.jpg&fm=jpg',
+      //     'https://images.pexels.com/photos/5465249/pexels-photo-5465249.jpeg?cs=srgb&dl=pexels-cottonbro-5465249.jpg&fm=jpg',
+      //     'https://images.pexels.com/photos/5465238/pexels-photo-5465238.jpeg?cs=srgb&dl=pexels-cottonbro-5465238.jpg&fm=jpg',
+      //   ],
+      // },
     ],
   },
   order: {
