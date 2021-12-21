@@ -2,6 +2,9 @@
   "name": "bicycle-shop",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "run-p start:* ",
     "start-silent": "run-p start > /dev/null",
