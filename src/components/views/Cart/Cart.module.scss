@@ -11,12 +11,36 @@
     margin: 0 auto;
     width: 100%;
 
+    .dividerSection {
+      width: 100%;
+      border: solid 1px rgb(119, 82, 52);
+      margin-top: 10px;
+      @include small {
+        margin-top: 10px;
+      }
+      @include medium {
+        margin-top: 10px;
+      }
+      @include large {
+        margin-top: 15px;
+      }
+    }
+
     .productSection {
-      // border: solid green;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
+
+      @include small {
+        justify-content: center;
+      }
+      @include medium {
+        justify-content: center;
+      }
+      @include large {
+        justify-content: center;
+      }
     }
 
     .productBox,
@@ -28,6 +52,7 @@
       display: flex;
       flex-direction: column;
       text-align: center;
+      align-items: center;
       // border: solid red;
       .productTitle {
         font-size: 16px;
@@ -67,6 +92,9 @@
     .totalBox,
     .removeBox {
       width: 127px;
+      @include small {
+        width: 83px;
+      }
       div {
         color: $color-main_font;
         margin: 20px;

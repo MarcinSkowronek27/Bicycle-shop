@@ -16,6 +16,7 @@ import {
 
 import styles from './Cart.module.scss';
 
+import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -120,6 +121,7 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
                   <FontAwesomeIcon icon={faTrashAlt}>Remove</FontAwesomeIcon>
                 </Button>
               </div>
+              <Divider variant="middle" className={styles.dividerSection} />
             </section>
           );
         })}
