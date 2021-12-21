@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 
 import clsx from 'clsx';
 
 import chain from '../../../icons/chain.png';
 import { connect } from 'react-redux';
-import { getCount } from '../../../redux/cartRedux';
+import { getAllCart } from '../../../redux/cartRedux';
 
 import styles from './Header.module.scss';
 
@@ -38,6 +39,16 @@ HideOnScroll.propTypes = {
 
 const Component = ({ className, props, cartCount }) => {
 
+  const [cartQty, setCartQty] = useState(0);
+
+  useEffect(() => {
+    let count = 0;
+    cartCount.forEach(item => {
+      count += parseInt(item.quantity);
+    });
+    setCartQty(count);
+  }, [cartQty, cartCount]);
+
   return (
     <div className={clsx(className, styles.root)}>
       <HideOnScroll {...props}>
@@ -67,7 +78,7 @@ const Component = ({ className, props, cartCount }) => {
                     <div className={styles.cartIcon}>
                       <FontAwesomeIcon className={styles.icon} icon={faShoppingBasket} />
                     </div>
-                    <div className={styles.cartCounter}>{cartCount}</div>
+                    <div className={styles.cartCounter}>{cartQty}</div>
                   </button>
                 </NavLink>
               </div>
@@ -85,11 +96,11 @@ Component.propTypes = {
   props: PropTypes.node,
   children: PropTypes.node,
   className: PropTypes.string,
-  cartCount: PropTypes.number,
+  cartCount: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
-  cartCount: getCount(state),
+  cartCount: getAllCart(state),
 });
 
 // const mapDispatchToProps = dispatch => ({

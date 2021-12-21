@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 
 // import clsx from 'clsx';
@@ -24,12 +24,22 @@ import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
 
-const Component = ({ products, removeProduct, updateQuantity, updateComment, comment }) => {
+const Component = ({ cartProducts, removeProduct, updateQuantity, updateComment, comment}) => {
 
   const delivery = 20;
   let subtotal = 0;
 
   const history = useHistory();
+
+  const [ cartQnty, setCartQnty ] = useState(0);
+
+  useEffect(() => {
+    let count = 0;
+    cartProducts.forEach(product => {
+      count += parseInt(product.quantity);
+    });
+    setCartQnty(count);
+  }, [cartProducts, cartQnty]);
 
   const handleGoTo = event => {
     history.push('/');
@@ -37,15 +47,17 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
 
   const [commentValue, setCommentValue] = useState(''); // eslint-disable-line
 
-  const handleInputComment = event => {
+  const handleInputComment = (event, id) => {
     setCommentValue(event.target.value);
+    updateComment(id, event.target.value);
   };
 
   return (
     <div className={styles.root}>
       <Container className={styles.container} maxWidth='lg'>
         <h4>YOUR CART</h4>
-        {products.map((product, index) => {
+        {cartProducts.map((product, index) => {
+          console.log(product.id);
           subtotal += product.price * product.quantity;
           return (
             <section key={product.id} className={styles.productSection}>
@@ -65,12 +77,9 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
                   multiline
                   rows={6}
                   variant="outlined"
-                  value={comment}
+                  value={product.comment}
                   // helperText="Min. 20 characters"
-                  onChange={event => {
-                    handleInputComment(event);
-                    updateComment(product.id, event.target.value);
-                  }}
+                  onChange={event => { handleInputComment(event, product.id); }}
                 />
               </div>
               <div className={styles.quantityBox}>
@@ -149,16 +158,17 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
 };
 
 Component.propTypes = {
-  products: PropTypes.array,
+  cartProducts: PropTypes.array,
   removeProduct: PropTypes.func,
   removeProducts: PropTypes.func,
   updateQuantity: PropTypes.func,
   updateComment: PropTypes.func,
+  id: PropTypes.string,
   comment: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
-  products: getAllCart(state),
+  cartProducts: getAllCart(state),
   subtotal: 0,
 });
 
