@@ -35,26 +35,19 @@ export const reducer = (statePart = [], action = {}) => {
   // };
   switch (action.type) {
     case ADD_PRODUCT: {
-      const id = action.payload.id;
-      // console.log(cart);
-      let findId = statePart.products.find(product => product.id === id);
-      // console.log(findId);
-      if (typeof findId !== 'undefined') {
-        return {
-          ...statePart,
-          products: statePart.products.map(product => {
-            // initialState.cart.products.push(product);
-            if (product.id === id) return { ...product, quantity: product.quantity + 1 };
-            return { ...product };
-          }),
-        };
-      } else {
-        // console.log('tutaj działa');
-        return {
-          ...statePart,
-          products: [...statePart.products, action.payload],
-        };
-      }
+      const inCart = statePart.products.find(product => (product._id === action.payload._id) ? true : false);
+      // const id = action.payload.id;
+      console.log('inCart1', inCart);
+      return {
+        ...statePart,
+        products: inCart
+          ? statePart.products.map(product =>
+            product._id === action.payload._id
+              ? { ...product, quantity: parseInt(product.quantity) + parseInt(action.payload.quantity) }
+              : product
+          )
+          : [...statePart.products, action.payload],
+      };
     }
     case REMOVE_PRODUCT: {
       // localStorage.setItem('cart', JSON.stringify(cart.products));
