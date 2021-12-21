@@ -36,13 +36,13 @@ export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {
     case ADD_PRODUCT: {
       console.log(statePart.products);
-      const inCart = statePart.products.find(product => (product.id === action.payload.id) ? true : false);
+      const inCart = statePart.products.find(product => (product.id === action.payload.id) ? 'undefined' : false);
       // const id = action.payload.id;
-      console.log(action.payload.id);
-      console.log('inCart1', inCart);
+      // console.log(action.payload.id);
+      // console.log('inCart1', inCart);
       return {
         ...statePart,
-        products: inCart === 'undefined'
+        products: inCart
           ? statePart.products.map(product =>
             product.id === action.payload.id
               ? { ...product, quantity: parseInt(product.quantity) + parseInt(action.payload.quantity) }
