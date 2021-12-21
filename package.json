@@ -39,6 +39,7 @@
   "dependencies": {
     "@babel/helper-builder-react-jsx": "^7.16.0",
     "@babel/helper-define-map": "^7.16.0",
+    "@babel/helper-regex": "^7.10.5",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
