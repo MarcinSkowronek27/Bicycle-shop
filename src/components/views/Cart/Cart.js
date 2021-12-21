@@ -43,46 +43,68 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
   return (
     <div className={styles.root}>
       <Container className={styles.container} maxWidth='lg'>
-        <h5>YOUR CART</h5>
-        <table>
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Comments</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Total</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product, index) => {
-              subtotal += product.price * product.quantity;
-              // console.log(product.id);
-              return (
-                <tr key={product.id}>
-                  <td>
-                    <div>{product.title}</div>
-                    <div className={styles.photo}>
-                      <img src={product.image} alt={product.title} />
-                    </div>
-                  </td>
-                  <td>
-                    <TextField key={product.id}
-                      id="text"
-                      label="Customize your product"
-                      name="text"
-                      multiline
-                      rows={6}
-                      variant="outlined"
-                      value={comment}
-                      // helperText="Min. 20 characters"
-                      onChange={event => {
-                        handleInputComment(event);
-                        updateComment(product.id, event.target.value);
-                      }}
-                    />
-                  </td>
+        <h4>YOUR CART</h4>
+        {products.map((product, index) => {
+          subtotal += product.price * product.quantity;
+          return (
+            <section key={product.id} className={styles.productSection}>
+              <div className={styles.productBox}>
+                <h5>Product</h5>
+                <div className={styles.productTitle}>{product.title}</div>
+                <div className={styles.photo}>
+                  <img src={product.image} alt={product.title} />
+                </div>
+              </div>
+              <div className={styles.commentsBox}>
+                <h5>Comments</h5>
+                <TextField key={product.id}
+                  id="text"
+                  label="Customize"
+                  name="text"
+                  multiline
+                  rows={6}
+                  variant="outlined"
+                  value={comment}
+                  // helperText="Min. 20 characters"
+                  onChange={event => {
+                    handleInputComment(event);
+                    updateComment(product.id, event.target.value);
+                  }}
+                />
+              </div>
+              <div className={styles.quantityBox}>
+                <h5>Quantity</h5>
+                <div className={styles.quantityButton}>
+                  <Button
+                    onClick={event => {
+                      event.preventDefault();
+                      updateQuantity(-1, product.title);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
+                  </Button>
+                  <input
+                    type='text'
+                    id='quantity'
+                    name='quantity'
+                    // defaultValue='1'
+                    value={product.quantity}
+                  />
+                  <Button
+                    onClick={event => {
+                      event.preventDefault();
+                      updateQuantity(1, product.title);
+                      // addToCart();
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
+                  </Button>
+                </div>
+              </div>
+            </section>
+          );
+        })}
+        {/* <table>
                   <td>
                     <Button
                       onClick={event => {
@@ -126,7 +148,7 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
               );
             })}
           </tbody>
-        </table>
+        </table> */}
         <div className={styles.cartOrder}>Subtotal: {subtotal}</div>
         <div className={styles.cartOrder}>Delivery: {delivery}</div>
         <div className={styles.cartOrder}>
@@ -136,10 +158,10 @@ const Component = ({ products, removeProduct, updateQuantity, updateComment, com
           <Button onClick={handleGoTo} className={styles.linkHome}>Homepage</Button>
           <NavLink exact to={'/bicycles/order'} activeClassName='active' className={styles.link}>
             <Button
-              // onClick={event => {
-              //   event.preventDefault();
-              //   addOrder();
-              // }}
+            // onClick={event => {
+            //   event.preventDefault();
+            //   addOrder();
+            // }}
             >
               GO TO ORDER
             </Button>
