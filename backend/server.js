@@ -37,8 +37,8 @@ app.use('*', (req, res) => {
 // if (NODE_ENV === 'production')
 dbUri = `mongodb+srv://${process.env.USER_TEST}:${process.env.PASS_TEST}@cluster0.xxdw6.mongodb.net/bicycleDB?retryWrites=true&w=majority`;
 // else dbUri = 'mongodb://localhost:27017/bicycleShop';
-console.log(process.env.PASS_TEST);
-console.log(process.env.USER_TEST);
+// console.log(process.env.PASS_TEST);
+// console.log(process.env.USER_TEST);
 try {
   mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 } catch (err) {
