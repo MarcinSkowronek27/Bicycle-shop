@@ -10,7 +10,7 @@
     "start-silent": "run-p start > /dev/null",
     "start:react": "react-scripts start",
     "start-and-test": "run-p start-silent test ",
-    "build": "react-scripts build",
+    "build": "cd client && npm install && npm run build",
     "server": "nodemon backend/server.js",
     "test": "react-scripts test --noStackTrace",
     "test-all": "react-scripts test --watchAll=false --noStackTrace",
