@@ -88,6 +88,7 @@ const Component = ({ cartProducts, removeProduct, updateQuantity, updateComment,
                   <Button
                     onClick={event => {
                       event.preventDefault();
+                      console.log(product.id);
                       updateQuantity(-1, product.title);
                     }}
                   >
