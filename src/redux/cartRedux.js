@@ -67,11 +67,22 @@ export const reducer = (statePart = [], action = {}) => {
     case UPDATE_QUANTITY: {
       return {
         ...statePart,
-        products: statePart.products.map(item =>
-          (item._id === action.payload.id)
-            ? { ...item, quantity: +action.payload.qnty }
-            : item
-        ),
+        products: statePart.products.map(product => {
+          console.log(product);
+          console.log(action.quantity);
+          // console.log(statePart);
+          if (product.title === action.id) {
+            if (
+              product.quantity >= 1 ||
+              (product.quantity < 1 && action.quantity > 0)
+            ) {
+              return {
+                ...product,
+                quantity: product.quantity + action.quantity,
+              };
+            } else return { ...product };
+          } else return { ...product };
+        }),
       };
     }
     case UPDATE_COMMENT: {
