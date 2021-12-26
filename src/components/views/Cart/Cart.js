@@ -57,7 +57,7 @@ const Component = ({ cartProducts, removeProduct, updateQuantity, updateComment,
       <Container className={styles.container} maxWidth='lg'>
         <h4>YOUR CART</h4>
         {cartProducts.map((product, index) => {
-          console.log(product.id);
+          // console.log(product.id);
           subtotal += product.price * product.quantity;
           return (
             <section key={product.id} className={styles.productSection}>

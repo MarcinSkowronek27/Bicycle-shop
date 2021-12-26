@@ -94,7 +94,7 @@ export const reducer = (statePart = [], action = {}) => {
     }
     case UPDATE_ORDER_FORM: {
       // console.log(action.payload.email);
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...statePart,
         personalData: {

@@ -28,7 +28,7 @@ const Component = ({ className, personalData, cartProducts, cleanCartContent, ad
   // const history = useHistory();
 
   const handleInputPayment = event => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setPaymentValue(event.target.value);
   };
 
