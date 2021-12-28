@@ -24,14 +24,14 @@ import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Button from '@material-ui/core/Button';
 import { NavLink } from 'react-router-dom';
 
-const Component = ({ cartProducts, removeProduct, updateQuantity, updateComment, comment}) => {
+const Component = ({ cartProducts, removeProduct, updateQuantity, updateComment, comment }) => {
 
   const delivery = 20;
   let subtotal = 0;
 
   const history = useHistory();
 
-  const [ cartQnty, setCartQnty ] = useState(0);
+  const [cartQnty, setCartQnty] = useState(0);
 
   useEffect(() => {
     let count = 0;
@@ -56,105 +56,115 @@ const Component = ({ cartProducts, removeProduct, updateQuantity, updateComment,
     <div className={styles.root}>
       <Container className={styles.container} maxWidth='lg'>
         <h4>YOUR CART</h4>
-        {cartProducts.map((product, index) => {
-          // console.log(product.id);
-          subtotal += product.price * product.quantity;
-          return (
-            <section key={product.id} className={styles.productSection}>
-              <div className={styles.productBox}>
-                <h5>Product</h5>
-                <div className={styles.productTitle}>{product.title}</div>
-                <div className={styles.photo}>
-                  <img src={product.image} alt={product.title} />
+        {!cartProducts.length ? (
+          <p>There is nothing in your cart yet, go back to homepage.</p>
+        ) :
+          cartProducts.map((product, index) => {
+            // console.log(product.id);
+            subtotal += product.price * product.quantity;
+            return (
+              <section key={product.id} className={styles.productSection}>
+                <div className={styles.productBox}>
+                  <h5>Product</h5>
+                  <div className={styles.productTitle}>{product.title}</div>
+                  <div className={styles.photo}>
+                    <img src={product.image} alt={product.title} />
+                  </div>
                 </div>
-              </div>
-              <div className={styles.commentsBox}>
-                <h5>Comments</h5>
-                <TextField key={product.id}
-                  id="text"
-                  label="Customize"
-                  name="text"
-                  multiline
-                  rows={6}
-                  variant="outlined"
-                  value={product.comment}
-                  // helperText="Min. 20 characters"
-                  onChange={event => { handleInputComment(event, product.id); }}
-                />
-              </div>
-              <div className={styles.quantityBox}>
-                <h5>Quantity</h5>
-                <div className={styles.quantityButton}>
-                  <Button
-                    onClick={event => {
-                      event.preventDefault();
-                      console.log(product.id);
-                      updateQuantity(-1, product.title);
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
-                  </Button>
-                  <input
-                    type='text'
-                    id='quantity'
-                    name='quantity'
-                    // defaultValue='1'
-                    value={product.quantity}
+                <div className={styles.commentsBox}>
+                  <h5>Comments</h5>
+                  <TextField key={product.id}
+                    id="text"
+                    label="Customize"
+                    name="text"
+                    multiline
+                    rows={6}
+                    variant="outlined"
+                    value={product.comment}
+                    // helperText="Min. 20 characters"
+                    onChange={event => { handleInputComment(event, product.id); }}
                   />
+                </div>
+                <div className={styles.quantityBox}>
+                  <h5>Quantity</h5>
+                  <div className={styles.quantityButton}>
+                    <Button
+                      onClick={event => {
+                        event.preventDefault();
+                        console.log(product.id);
+                        if (product.quantity > 1) updateQuantity(-1, product.title);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faMinus}>-</FontAwesomeIcon>
+                    </Button>
+                    <input
+                      type='text'
+                      id='quantity'
+                      name='quantity'
+                      // defaultValue='1'
+                      value={product.quantity}
+                    />
+                    <Button
+                      onClick={event => {
+                        event.preventDefault();
+                        updateQuantity(1, product.title);
+                        // addToCart();
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
+                    </Button>
+                  </div>
+                </div>
+                <div className={styles.priceBox}>
+                  <h5>Price</h5>
+                  <div>{product.price}</div>
+                </div>
+                <div className={styles.totalBox}>
+                  <h5>Total</h5>
+                  <div>{product.price * product.quantity}</div>
+                </div>
+                <div className={styles.removeBox}>
+                  <h5>Remove</h5>
                   <Button
                     onClick={event => {
                       event.preventDefault();
-                      updateQuantity(1, product.title);
-                      // addToCart();
+                      return removeProduct(product.title);
                     }}
                   >
-                    <FontAwesomeIcon icon={faPlus}>+</FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faTrashAlt}>Remove</FontAwesomeIcon>
                   </Button>
                 </div>
-              </div>
-              <div className={styles.priceBox}>
-                <h5>Price</h5>
-                <div>{product.price}</div>
-              </div>
-              <div className={styles.totalBox}>
-                <h5>Total</h5>
-                <div>{product.price * product.quantity}</div>
-              </div>
-              <div className={styles.removeBox}>
-                <h5>Remove</h5>
+                <Divider variant="middle" className={styles.dividerSection} />
+              </section>
+            );
+          })
+        }
+        {!cartProducts.length ? (
+          ''
+        ) :
+          <div>
+            <div className={styles.cartOrder}>Subtotal: {subtotal}</div>
+            <div className={styles.cartOrder}>Delivery: {delivery}</div>
+            <div className={styles.cartOrder}>
+              Total: {subtotal > 0 ? subtotal + delivery : 0}
+            </div>
+            <div className={styles.checkout}>
+              <Button onClick={handleGoTo} className={styles.linkHome}>Homepage</Button>
+              <NavLink exact to={'/bicycles/order'} activeClassName='active' className={styles.link}>
                 <Button
-                  onClick={event => {
-                    event.preventDefault();
-                    return removeProduct(product.title);
-                  }}
+                // onClick={event => {
+                //   event.preventDefault();
+                //   addOrder();
+                // }}
                 >
-                  <FontAwesomeIcon icon={faTrashAlt}>Remove</FontAwesomeIcon>
+                  GO TO ORDER
                 </Button>
-              </div>
-              <Divider variant="middle" className={styles.dividerSection} />
-            </section>
-          );
-        })}
-        <div className={styles.cartOrder}>Subtotal: {subtotal}</div>
-        <div className={styles.cartOrder}>Delivery: {delivery}</div>
-        <div className={styles.cartOrder}>
-          Total: {subtotal > 0 ? subtotal + delivery : 0}
-        </div>
-        <div className={styles.checkout}>
-          <Button onClick={handleGoTo} className={styles.linkHome}>Homepage</Button>
-          <NavLink exact to={'/bicycles/order'} activeClassName='active' className={styles.link}>
-            <Button
-            // onClick={event => {
-            //   event.preventDefault();
-            //   addOrder();
-            // }}
-            >
-              GO TO ORDER
-            </Button>
-          </NavLink>
-        </div>
-      </Container>
-    </div>
+              </NavLink>
+            </div>
+          </div>
+        }
+      </Container >
+    </div >
   );
 };
 

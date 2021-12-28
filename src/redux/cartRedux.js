@@ -35,10 +35,10 @@ export const reducer = (statePart = [], action = {}) => {
   // };
   switch (action.type) {
     case ADD_PRODUCT: {
-      console.log(statePart.products);
+      // console.log(statePart.products);
       const inCart = statePart.products.find(product => (product.id === action.payload.id) ? 'undefined' : false);
       // const id = action.payload.id;
-      // console.log(action.payload.id);
+      // console.log(action.payload.quantity);
       // console.log('inCart1', inCart);
       return {
         ...statePart,

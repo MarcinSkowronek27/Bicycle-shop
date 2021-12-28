@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button';
 
 import { connect } from 'react-redux';
 import { fetchOneFromAPI, getOneBicycle } from '../../../redux/bicyclesRedux';
-import { addProduct} from '../../../redux/cartRedux';
+import { addProduct } from '../../../redux/cartRedux';
 
 import styles from './Bicycle.module.scss';
 
@@ -36,11 +36,11 @@ class BicyclePage extends React.Component {
   }
 
   addButton() {
-    this.setState({value: this.state.value +1});
+    if (this.state.value >= 1) this.setState({ value: this.state.value + 1 });
   }
 
   remButton() {
-    this.setState({value: this.state.value -1});
+    if (this.state.value > 1) this.setState({ value: this.state.value - 1 });
   }
 
   componentDidMount() {
@@ -83,7 +83,7 @@ class BicyclePage extends React.Component {
         quantity: this.state.value,
       };
       // console.log(cartPayload);
-      addToCart(cartPayload);
+      if (cartPayload.quantity > 0) addToCart(cartPayload);
     };
     // console.log('id', id);
     // console.log('allBicycles', allBicycles);
